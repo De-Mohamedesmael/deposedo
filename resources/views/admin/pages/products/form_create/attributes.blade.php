@@ -19,7 +19,8 @@
         @foreach($attributes->whereNotIn('id' , $notIds) as $attribute)
                     <option
                         data-options="{{$attribute->options}}"
-                        value="{{$attribute->id}}">{{$attribute->name_ar .' | '.$attribute->name_en}}</option>
+                        value="{{$attribute->id}}">{{$attribute->name_ar .' | '.$attribute->name_en}}
+                    </option>
                 @endforeach
 
 
