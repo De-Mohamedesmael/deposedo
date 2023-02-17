@@ -15,10 +15,10 @@ class Product extends Model
     protected $product_id;
     protected $fillable = [
         "id", "name_ar", "name_en", "slug", "description_ar", "description_en", "about_brand_ar", "about_brand_en", "brand_name", "seller_name", "discount_percentage",
-        "regular_price", "sale_price", "alt", "in_sale", 'is_clothes', "sort",
+        "regular_price", "sale_price","alt", "in_sale", 'is_clothes', "sort",
         "is_recommended", "has_options", "is_best", "end_sale", "start_sale",
         "is_brand", "is_clothes", "ratings", "quantity",
-        "created_at", "updated_at", "deleted_at", "likes_count", "img", 'day_order', 'is_order', 'serial_number'
+        "created_at", "updated_at", "deleted_at", "likes_count", "img", 'video', 'day_order', 'is_order', 'serial_number'
     ];
 
     protected $appends = ['img_src'];

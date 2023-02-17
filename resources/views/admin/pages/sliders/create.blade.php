@@ -53,18 +53,8 @@
         $('input').maxlength({
             threshold: 40,
         });
-        $('#in_app').change(function() {
-            if($('#in_app').val() === '1'){
-                
-               $('#link').attr("placeholder", "{{__('form.placeholder.link1')}}");
 
-            }else{
-               $('#link').attr("placeholder", "{{__('form.placeholder.link')}}");
- 
-            }
-        });
         $('#link').on('input', function(){
-
             if ($('#in_app').val() === '1') {
 
                 $.ajax({

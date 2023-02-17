@@ -43,7 +43,7 @@
                             </tr>
                             <tr>
                                 <th scope="row" class="btn-dark">@lang('site.total_price')</th>
-                                <td>{{ $invoice->total_price }} @lang('site.YER')</td>
+                                <td>{{ $invoice->total_price }} @lang('site.DZD')</td>
 
                             </tr>
                             <th scope="row" class="btn-dark">@lang('site.email')</th>

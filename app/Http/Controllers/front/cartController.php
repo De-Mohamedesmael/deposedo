@@ -706,7 +706,7 @@ class cartController extends Controller
             'InvoiceValue' => $order->total_price,
             'CustomerName' => $name,
             //Fill optional data
-            'DisplayCurrencyIso' => 'YER',
+            'DisplayCurrencyIso' => 'DZD',
             'MobileCountryCode'  => $country_code,
             'CustomerMobile'     => $phone,
             'CustomerEmail'      => $email ?? "no@gmail.com",

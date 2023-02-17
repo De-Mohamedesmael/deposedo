@@ -17,7 +17,7 @@
             <label for="in_app">@lang('form.label.type link')</label>
             <select name="in_app" type="text" class="form-control @error('in_app') is-invalid @enderror" id="in_app">
                 <option value="0">@lang('form.label.normal link')</option>
-                <option value="0">@lang('form.label.app link')</option>
+                <option value="1">@lang('form.label.app link')</option>
             </select>
             @error('in_app')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
         </div>

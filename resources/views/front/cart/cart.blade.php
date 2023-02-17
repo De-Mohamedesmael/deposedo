@@ -229,7 +229,7 @@ price: price
 
 },
 success: function (response) {
-$("#my_total").val(response + '{{__("site.YER")}}');
+$("#my_total").val(response + '{{__("site.DZD")}}');
 
  //$("#divid").load(" #divid");
 	//return response;
@@ -261,11 +261,11 @@ if(factor == 'minus'){
           url: "{{url('/update_cart')}}/"+item_id+"/"+qq+'/'+key,
           method: "get",
           success: function (response) {
-                $(".my_total").html(response.data + '{{__("site.YER")}}');
+                $(".my_total").html(response.data + '{{__("site.DZD")}}');
 
           //alert(response.data);
           },error: function (response,u) {
-          //$(".my_total").html(response + '{{__("site.YER")}}');
+          //$(".my_total").html(response + '{{__("site.DZD")}}');
           	alert(u);
 
           }
@@ -284,7 +284,7 @@ url: "{{url('/update_cart')}}/"+item_id+"/"+qq+'/'+key,
 method: "get",
 
 success: function (response) {
-$(".my_total").html(response.data + '{{__("site.YER")}}');
+$(".my_total").html(response.data + '{{__("site.DZD")}}');
 	//alert(response.data);
 
 },error: function (response,u) {
@@ -295,7 +295,7 @@ $(".my_total").html(response.data + '{{__("site.YER")}}');
 });
 }else{}
 //calc_total_cost(elem,pro_price,factor);
-$(".x_sub_total_price_"+elem+'_'+key).html(pro_price * qq + '{{__("site.YER")}}');
+$(".x_sub_total_price_"+elem+'_'+key).html(pro_price * qq + '{{__("site.DZD")}}');
  //$("#total").load(location.href +"#total");
 
  //$("#total").load("#total > *");
@@ -325,7 +325,7 @@ _token: '{{ csrf_token() }}',
 id: elem.value,
 }, success: function (result) {
 	//alert(result);
-$(".x_sub_total_price_"+elem).html(result + '{{__("site.YER")}}');
+$(".x_sub_total_price_"+elem).html(result + '{{__("site.DZD")}}');
 get_total_price(result);
 
 }});

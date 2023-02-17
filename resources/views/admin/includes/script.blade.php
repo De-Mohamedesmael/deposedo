@@ -19,7 +19,7 @@
 
         let arrayUrl = location.pathname.split('/');
 
-        let linkNow = arrayUrl[2];
+        let linkNow = arrayUrl[3];
         console.log(linkNow)
         if (linkNow !== 'trash' && linkNow !== 'sort'){
 
@@ -29,10 +29,10 @@
 
         }else {
 
-            let linkNow = arrayUrl[3];
+            let linkNow = arrayUrl[4];
 
             $('#toggle-'+linkNow).attr('data-active' , 'true').click()
-            $('#'+linkNow + ' #li-'+arrayUrl[2]).addClass('active')
+            $('#'+linkNow + ' #li-'+arrayUrl[3]).addClass('active')
 
         }
     });

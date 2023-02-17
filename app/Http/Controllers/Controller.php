@@ -107,8 +107,8 @@ class Controller extends BaseController
                 case 'Info' :  
                     if($type_model != null && $step==1){
                         if($type_model->type_discount == "price"){
-                            $descount_ar= $type_model->discount .' '. __('site.YER',[],'ar');
-                            $descount_en= $type_model->discount .' '. __('site.YER',[],'en');
+                            $descount_ar= $type_model->discount .' '. __('site.DZD',[],'ar');
+                            $descount_en= $type_model->discount .' '. __('site.DZD',[],'en');
                         }else{
                             $descount_ar= $type_model->discount .' %';
                             $descount_en= $type_model->discount .' %';

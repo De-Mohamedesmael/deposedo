@@ -246,6 +246,9 @@
                     color: #32a3cd;
                     font-size: 20px;
                 }
+                body#body-id {
+                    overflow-x: hidden;
+                }
              </style>
                  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
@@ -278,7 +281,7 @@
                       <div class="dropdown language-dropdown">
                           <i class="fa fa-coins"></i>
                           <a data-toggle="dropdown" href="#"><span class="change-text">
-                                  {{ $currency_def}}
+                                  {{ get_currency_helper()}}
                               </span> <i class="fa fa-angle-down"></i></a>
                           <ul class="dropdown-menu language-change  text-center">
                               @foreach($currencies_home as  $currency_home)

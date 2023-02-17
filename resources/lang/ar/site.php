@@ -75,7 +75,7 @@ return [
     'Email' => 'البريد الالكتروني',
     'Follow us on' => 'تابعنا',
     'All rights reserved to kocart 2022 Designed and developed by' => 'جميع الحقوق محفوظة لـ Deposedo 2022 تصميم وتطوير',
-    'YER' => 'ر.ي',
+    'DZD' => 'د.ج',
     'all products' => 'جميع المنتجات',
     'Price' => 'السعر',
     'There are no items in the Wish List' => 'لا توجد عناصر في قائمة المفضلة',
@@ -161,7 +161,7 @@ return [
     'total_quantity' => 'كمية الطلب الاجماليه',
     'date_of_order' => 'تاريخ الطلب',
     'order_summary' => 'ملخص الطلب',
-    'YER' => 'ر.ي',
+    'DZD' => 'د.ج',
     'images_orders' => 'صور المنتجات في الطلب',
     'day'=>'يوم ',
     'front_is_order_day'=>'الطلب سيصل خلال ',
@@ -189,5 +189,12 @@ return [
 
     'addToCartDone' =>  'تم الاضافة الي السلة بنجاح',
     'addToCartfil'=>'لم تكتمل العملية',
+
+    'sortby_highestPrice'=>'الاعلي سعراً',
+    'sortby_lowestPrice'=>'الاقل سعراً',
+    'sortby_bestSeller'=>'افضل المنتجات',
+    'sortby_new'=>'احدث المنتجات',
+    'sortby_random'=>'افتراضياً',
+
 
 ];

@@ -177,7 +177,7 @@ class HomeProductsController extends Controller
               'InvoiceValue' => 20,
               'CustomerName' => 'mohamed',
               //Fill optional data
-              'DisplayCurrencyIso' => 'YER',
+              'DisplayCurrencyIso' => 'DZD',
               'MobileCountryCode'  => '965',
               'CustomerMobile'     => '97244282',
               'CustomerEmail'      =>  "no@gmail.com",

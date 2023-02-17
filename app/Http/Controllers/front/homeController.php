@@ -31,7 +31,7 @@ class homeController extends Controller
  //   }
 
 
- const COUNT_ROWS = 10;
+ const COUNT_ROWS = 16;
 
 
 
@@ -212,59 +212,84 @@ class homeController extends Controller
 
     }
 
-    public function productByType($type)
-      {
+    public function productByType($type,$sortby=null)
+    {
+
+        $sortbys=['bestSeller','highestPrice','lowestPrice'];
+        $sortby = $sortby??'bestSeller';
 
         switch ($type) {
           case 'topRating':
-          $topRating = Product::customSelect(['ratings'])
+              $data = Product::customSelect(['ratings'])
               ->orderBy('ratings' , 'desc')
-              ->inStock()->where('is_brand',0)
-              ->paginate(15);
+              ->inStock()->where('is_brand',0);
             break;
 
           case 'bestProducts':
               $data = Product::customSelect(['is_best'])
                   ->where('is_best' , 1)
                   ->inStock()->where('is_brand',0)
-                  ->inRandomOrder()
-                  ->paginate(15);
+                  ->inRandomOrder();
               break;
           case 'recommendedProducts':
           $data = Product::customSelect(['is_recommended'])
               ->where('is_recommended' , 1)
               ->inStock()->where('is_brand',0)
-              ->inRandomOrder()
-              ->paginate(15);
+              ->inRandomOrder();
             break;
           case 'offers':
           $data = Product::customSelect()
               ->where('in_sale' , 1)
-              ->inStock()->inSale()->where('is_brand',0)
-              ->paginate(15);
+              ->inStock()->inSale()->where('is_brand',0);
             break;
           case 'bestPrice':
           $data = Product::customSelect()
               ->orderBy('regular_price' , 'asc')
-              ->inStock()->where('is_brand',0)
-              ->paginate(15);
+              ->inStock()->where('is_brand',0);
             break;
           case 'topLikes':
           $data = Product::customSelect(['likes_count'])
               ->orderBy('likes_count' , 'desc')
-              ->inStock()->where('is_brand',0)
-              ->paginate(15);
+              ->inStock()->where('is_brand',0);
             break;
           default:
           $data = Product::customSelect()
-              ->latest('id')->where('is_brand',0)
-              ->paginate(15);
+              ->latest('id')->where('is_brand',0);
             break;
         }
+        switch ($sortby) {
+            case 'new':
+                $data=$data
+                    ->orderBy('likes_count')->latest('id')->paginate(self::COUNT_ROWS);
 
+                break;
+            case 'highestPrice':
+                $data=$data
+                    ->orderBy('regular_price','DESC')->orderBy('sale_price','DESC')->paginate(self::COUNT_ROWS);
+
+                break;
+            case 'lowestPrice':
+                $data=$data
+                    ->orderBy('regular_price','asc')->orderBy('sale_price','asc')->paginate(self::COUNT_ROWS);
+
+                break;
+            case 'bestSeller':
+                $data=$data
+                    ->orderBy('likes_count')->inRandomOrder()->paginate(self::COUNT_ROWS);
+
+                break;
+
+            default:
+                $data=$data->inRandomOrder()
+                    ->paginate(self::COUNT_ROWS);
+                break;
+        }
 
       return view("front.template")->with([
       'populars'         => $data,
+      'sortby'         => $sortby,
+      'sortbys'         => $sortbys,
+      'type'         => $type,
       'name'         => __('site.'.$type)]);
 
     }
@@ -272,8 +297,11 @@ class homeController extends Controller
 
 
 
-    public function vendor(Request $request,$id)
+    public function vendor(Request $request,$id,$sortby=null)
     {
+
+        $sortbys=['new','bestSeller','highestPrice','lowestPrice','random'];
+        $sortby =$sortby??'random';
       $records = Category::findOrFail($id);
        $ParentCategory=null;
       // dd(  $records);
@@ -289,7 +317,7 @@ class homeController extends Controller
 
         $populars = Product::whereHas('categories' , function ($q) use ($allCategories){
             $q->whereIn('categories.id' , $allCategories);
-          })->paginate(15);
+          })->withCount('likes');
         // $offers =  Product::whereHas('categories' , function ($q) use ($allCategories){
         //     $q->whereIn('categories.id' , $allCategories);
         // })->where("in_sale",1)->inSale()->paginate(15);
@@ -299,11 +327,37 @@ class homeController extends Controller
         $ParentCategory=Category::select('id','name_'.app()->getlocale())->where('id',$records->parent_id)->first();
 
         // $offers = $records->products()->where("in_sale",1)->inSale()->paginate(15);
-         $populars = $records->products()->paginate(15);
+         $populars = $records->products()->withCount('likes');
       }
+        switch ($sortby) {
+            case 'new':
+                $populars=$populars
+                    ->orderBy('likes_count')->latest('id')->paginate(self::COUNT_ROWS);
 
+                break;
+            case 'highestPrice':
+                $populars=$populars
+                    ->orderBy('regular_price','DESC')->orderBy('sale_price','DESC')->paginate(self::COUNT_ROWS);
+
+                break;
+            case 'lowestPrice':
+                $populars=$populars
+                    ->orderBy('regular_price','asc')->orderBy('sale_price','asc')->paginate(self::COUNT_ROWS);
+
+                break;
+            case 'bestSeller':
+                $populars=$populars
+                    ->orderBy('likes_count')->inRandomOrder()->paginate(self::COUNT_ROWS);
+
+                break;
+
+            default:
+                $populars=$populars->inRandomOrder()
+                    ->paginate(self::COUNT_ROWS);
+                break;
+        }
                                 // dd( $subCategories_header);
-      return view("front.vendor",compact("records","id","populars",'subCategories_header','ParentCategory'));
+      return view("front.vendor",compact("records",'sortby','sortbys',"id","populars",'subCategories_header','ParentCategory'));
 
     }
     public function brand (Request $request,$id)
