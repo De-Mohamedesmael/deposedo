@@ -92,7 +92,22 @@ trait MDT_UploadImag
 
 
 
+    public function MDT_saveVideo($file , $name , $path ='assets/videos/products/min/'){
 
+        ini_set('memory_limit','256M');
+
+        if ($file) {
+            $file = $file;
+            $ext = $file->extension();
+            $name = 'Video_' .$name. time() . '.' . $ext;
+            $fileName =  $name;
+            $name = public_path($path) . '/' . $name;
+            move_uploaded_file($file, $name);
+            return $fileName;
+        }
+
+        return  null;
+    }
 
     public function MDT_saveMultiImage($files, $name , $fk_id=['nameKey' , 'id'] , $path='assets/images/products/gallery/' ){
 

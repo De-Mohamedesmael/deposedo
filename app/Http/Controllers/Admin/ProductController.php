@@ -342,7 +342,7 @@ class ProductController extends Controller
         $product = Product::findOrFail($id); // check and get product
 
         // start update product
-        $product->update($this->columnsDB($request, $product->img));
+        $product->update($this->columnsDB($request, $product->img,$product->video));
         //end update product
 
         //size colors
@@ -504,13 +504,14 @@ class ProductController extends Controller
     ///////////////////////////////////////////////////////
 
 
-    public function columnsDB($request, $oldImag = null)
+    public function columnsDB($request, $oldImag = null,$oldVideo=null)
     {
 
         $this->slug = strlen($request->slug) > 0 ? \Str::slug($request->slug) : \Str::slug($request->name_en);
 
 
         $img = $request->file('img') ? $this->MDT_saveImage($request->img, $this->slug) : $oldImag;
+        $video = $request->file('video') ? $this->MDT_saveVideo($request->video, $this->slug) : $oldVideo;
 
         $regular_price = (float)$request->regular_price;
         $sale_price = (float)$request->sale_price;
@@ -519,6 +520,7 @@ class ProductController extends Controller
         return [
 
             'img' => $img,
+            'video' => $video,
             'name_ar' => $request->name_ar,
             'name_en' => $request->name_en,
 

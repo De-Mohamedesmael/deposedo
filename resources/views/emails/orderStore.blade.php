@@ -19,7 +19,7 @@
                         </tr>
                         <tr>
                             <th scope="row" class="btn-dark" style="background-color: #d2b250de;padding: 0 5px !important;color: #fff;border: 1px solid #000;">@lang('site.total_price')</th>
-                            <td style="text-align: center;border: 1px solid #000;padding: 2px;">{{ $invoice->total_price }} @lang('site.YER')</td>
+                            <td style="text-align: center;border: 1px solid #000;padding: 2px;">{{ $invoice->total_price }} @lang('site.DZD')</td>
 
                         </tr>
                         <th scope="row" class="btn-dark" style="background-color: #d2b250de;padding: 0 5px !important;color: #fff;border: 1px solid #000;">@lang('site.email')</th>

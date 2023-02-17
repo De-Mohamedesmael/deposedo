@@ -33,6 +33,8 @@ use App\Http\Controllers\Admin\SectionController;
 use App\Http\Controllers\Admin\SizeController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\StudentController;
+use App\Http\Controllers\Admin\PackageController;
+use App\Http\Controllers\Admin\PeriodController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ReportController;
 use Illuminate\Support\Facades\Route;
@@ -160,6 +162,12 @@ Route::middleware('admin.auth')->prefix('admin')->group(function () {
     Route::get('trash/student/{id?}', [StudentController::class, 'index'])->name('student.trash');
     Route::post('trash/student/{id}', [StudentController::class, 'restore'])->name('student.restore');
     Route::delete('trash/student/{id}', [StudentController::class, 'finalDelete'])->name('student.finalDelete');
+
+
+    #################### packages #####################
+    Route::resource('packages', PackageController::class);
+    Route::resource('periods', PeriodController::class);
+
 
 
     Route::resource('notification', NotificationController::class);

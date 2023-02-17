@@ -76,9 +76,9 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
   Route::get('/', [homeController::class, 'home'] )->name("home");
 
   Route::get('/product/{id}', [homeController::class,"product"]  )->name("product");
- Route::get('/show/{type}', [homeController::class,"productByType"]  )->name("productByType");
+ Route::get('/show/{type}/{sortby?}', [homeController::class,"productByType"]  )->name("productByType");
 
- Route::get('/vendor/{id}', [homeController::class,"vendor"] )->name("vendor");
+ Route::get('/vendor/{id}/{sortby?}', [homeController::class,"vendor"] )->name("vendor");
 Route::get('/brand/{id}', [homeController::class,"brand"] )->name("brand");
     Route::post('/getCity',[cartController::class,'getCity'])->name('get.city');
     Route::post('/getDelivery',[cartController::class,'getDelivery'])->name('get.delivery');

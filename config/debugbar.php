@@ -111,7 +111,7 @@ return [
         'messages'        => true,  // Messages
         'time'            => true,  // Time Datalogger
         'memory'          => true,  // Memory usage
-        'exceptions'      => true,  // Exception displayer
+        'exceptions'      => true,  // Exception displaDZD
         'log'             => true,  // Logs from Monolog (merged in messages if enabled)
         'db'              => true,  // Show database (PDO) queries and bindings
         'views'           => true,  // Views with their data

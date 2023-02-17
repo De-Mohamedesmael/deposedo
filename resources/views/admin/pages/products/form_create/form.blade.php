@@ -16,7 +16,7 @@
 
         @include('admin.pages.products.form_create.price')
 
-        
+
         @include('admin.pages.products.form_create.new_size')
 
         @include('admin.pages.products.form_create.kurly')
@@ -25,6 +25,8 @@
         @include('admin.pages.products.form_create.file_upload')
 
         @include('admin.pages.products.form_create.description')
+
+
 
         @include('admin.pages.products.form_create.categories')
         @include('admin.pages.products.form_create.attributes')

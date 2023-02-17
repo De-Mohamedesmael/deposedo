@@ -84,31 +84,8 @@
     <section id="design-parent">
 
         <div id="design-images-slider" class="row">
-            {{-- <ol class=" position-relative navbar col-2"
-      style="display: inline-block;/* width:100%; */margin-top:10px;z-index: 7;list-style: none;justify-content:center;">
-      <br>
+            <!-- Carousel wrapper -->
 
-
-
-      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="">
-          <img src=" {{asset('assets/images/products/min/' . $result->img) }}" class="img">
-      </li><br>
-
-      @if ($result->images->count() > 0)
-          @foreach ($result->images as $img)
-
-              <li data-target="#carouselExampleIndicators" data-slide-to="{{ $loop->index + 1 }}"
-                  class="">
-                  <img src="{{asset('assets/images/products/gallery/'.$img->src)}}" class="img">
-
-              </li><br>
-
-          @endforeach
-
-
-
-      @endif
-  </ol> --}}
             <div id="carouselExampleIndicators" class="carousel slide carousel1 col-12" data-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
@@ -129,7 +106,14 @@
                             </div>
                         @endforeach
                     @endif
+                    @if ($result->video)
+                        <div class="carousel-item">
+                            <video class="img-fluid" autoplay loop muted>
+                                <source src="{{asset("assets/videos/products/min/$result->video")}}" />
+                            </video>
+                        </div>
 
+                    @endif
 
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev"

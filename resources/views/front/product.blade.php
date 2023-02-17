@@ -225,7 +225,7 @@ price: price
 
 },
 success: function (response) {
-$("#my_total").val(response + "YER");
+$("#my_total").val(response + "DZD");
 
  //$("#divid").load(" #divid");
 	//return response;
@@ -251,10 +251,10 @@ method: "get",
 
 
 success: function (response) {
-$(".my_total").html(response.data + "YER");
+$(".my_total").html(response.data + "DZD");
 //alert(response.data);
 },error: function (response,u) {
-//$(".my_total").html(response + "YER");
+//$(".my_total").html(response + "DZD");
 	alert(u);
 
 }
@@ -267,11 +267,11 @@ url: "{{url('/update_cart')}}/"+item_id+"/"+qq,
 method: "get",
 
 success: function (response) {
-$(".my_total").html(response.data + "YER");
+$(".my_total").html(response.data + "DZD");
 	//alert(response.data);
 
 },error: function (response,u) {
-//$(".my_total").html(response + "YER");
+//$(".my_total").html(response + "DZD");
 //	alert(u);
 
 }
@@ -279,7 +279,7 @@ $(".my_total").html(response.data + "YER");
 }); 
 }else{}         
 //calc_total_cost(elem,pro_price,factor);
-$(".x_sub_total_price_"+elem).html(pro_price * qq + " YER");
+$(".x_sub_total_price_"+elem).html(pro_price * qq + " DZD");
  //$("#total").load(location.href +"#total");
 
  //$("#total").load("#total > *");
@@ -309,7 +309,7 @@ _token: '{{ csrf_token() }}',
 id: elem.value,
 }, success: function (result) {
 	//alert(result);
-$(".x_sub_total_price_"+elem).html(result + "YER");
+$(".x_sub_total_price_"+elem).html(result + "DZD");
 get_total_price(result);
  
 }});

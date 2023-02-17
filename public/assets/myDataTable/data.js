@@ -54,6 +54,7 @@ let columns = [],
         let langNotData = "لا توجد اي بيانات لعرضها",
             langUpdate = 'منذ ثواني';
         langBtn['edit'] = 'تعديل';
+        langBtn['periods'] = 'خطط الاسعار';
         langBtn['delete'] = 'حذف';
         langBtn['deleteSelected'] = 'حذف المحدد';
         langBtn['printSelected'] = 'طباعة المحدد';
@@ -77,13 +78,14 @@ let columns = [],
 
         var langNotData = "There is no data to display",
             langUpdate = 'seconds ago';
-        langBtn['edit'] = 'Edit';
-        langBtn['delete'] = 'Delete';
-        langBtn['deleteSelected'] = 'Delete Selected';
-        langBtn['printSelected'] = 'Print Selected';
-        langBtn['restore'] = 'Restore';
-        langBtn['show'] = 'Show';
-        langBtn['restoreSelected'] = 'Restore Selected';
+            langBtn['edit'] = 'Edit';
+            langBtn['periods'] = 'periods';
+            langBtn['delete'] = 'Delete';
+            langBtn['deleteSelected'] = 'Delete Selected';
+            langBtn['printSelected'] = 'Print Selected';
+            langBtn['restore'] = 'Restore';
+            langBtn['show'] = 'Show';
+            langBtn['restoreSelected'] = 'Restore Selected';
 
     }
 
@@ -219,7 +221,7 @@ function myDataTableColumns($columns) {
     });
 
     $.each($columns['file'] , function (column_name , file) {
-       
+
 
         let type = file.split('=>')[0],
             url  = file.split('=>')[1];
@@ -239,7 +241,7 @@ function myDataTableColumns($columns) {
             columnsData[column_name]['url'] = splitUrl(url)
 
         }else {
-            
+
             columnsData[column_name][0].attr('data-type' , 'image').append(tag_image)
             columnsData[column_name]['type'] = 'file:image'
             columnsData[column_name]['url'] = splitUrl(file)
@@ -268,15 +270,15 @@ function myDataTableColumns($columns) {
 
             if ($btnName === 'edit') {
 
-                columnsData['btn'][$btnName]['btnActionSingle'] = $('<a href="" class="btn btn-outline-success dataEdit" title=" ' + langBtn['edit'] + '"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg><i class="fas fa-edit fa-1x"></i> </a>')
+                columnsData['btn'][$btnName]['btnActionSingle'] = $('<a href="" class="btn btn-outline-success dataEdit" title=" ' + langBtn['edit'] + '"><i class="fas fa-edit fa-1x"></i> </a>')
 
-            }else if ($btnName === 'show'){
+            }else if ($btnName === 'periods'){
 
-                columnsData['btn'][$btnName]['btnActionSingle']   = $('<a href="" class="btn btn-warning"> ' + langBtn['show'] + '<i class="fas fa-open fa-1x"></i> </a>')
+                columnsData['btn'][$btnName]['btnActionSingle']   = $('<a href="" class="btn btn-warning"> ' + langBtn['periods'] + '<i class="fas fa-open fa-1x"></i> </a>')
 
             }else if ($btnName === 'delete') {
 
-                columnsData['btn'][$btnName]['btnActionSingle']   = $( '<a href="" class="btn btn-outline-danger dataDelete" title="' + langBtn['delete'] + '"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg><i class="fas fa-trash-alt"></i> </a>')
+                columnsData['btn'][$btnName]['btnActionSingle']   = $( '<a href="" class="btn btn-outline-danger dataDelete" title="' + langBtn['delete'] + '"><i class="fas fa-trash-alt"></i> </a>')
                 columnsData['btn'][$btnName]['btnActionSelected'] = $('<a href="" class="btn btn-outline-danger dataSelectedDelete"> ' + langBtn['deleteSelected'] + '<i class="fas fa-trash-alt"></i> </a>')
 
             }else if ($btnName === 'restore') {
@@ -371,15 +373,15 @@ function dataTableAjax() {
             let responseData = response.dataDB.data,
                 newRow = [];
             if (responseData.length > 0) {
-            
+
                 responseData.forEach(function (row) {
-                     
+
                     let columns  = [];
                     $.each(columnsData , function (name , columnContent) {
 
                         let newLink= '',
                             columnRealVal = null;
-                        
+
 
                         let columnName = columnContent['nameDB'],
                         columnVal = columnName.split('.'),
@@ -429,10 +431,10 @@ function dataTableAjax() {
                                 : columnVal
 
                         }
-                            
+
                         //td one
-                        
-                        
+
+
                         if ( columnName === 'tdOne') {
 
                             let newTdOne = '';
@@ -518,7 +520,7 @@ function dataTableAjax() {
 
                         // is file
                         else if (/file:\w+/.test(columnType) ){
-                                
+
                             columnContent['url'].forEach(function (val) {
 
                                 // is set route arguments
@@ -644,7 +646,7 @@ function dataTableAjax() {
                                 }
                                 newLink = ''
                             });
-                             
+
                             columns.push(tdBtnAction[0].outerHTML)
 
                             // console.log(...tdBtnAction)
@@ -656,7 +658,7 @@ function dataTableAjax() {
                         console.log(columnName=="imaget");
 
                     }) // end loop in column table
-                       
+
                     newRow.push('<tr class="row-'+row.id+'">'+columns.toString()+'</tr>')
 
                 });
@@ -1408,7 +1410,7 @@ $(function () {
                                     $(this).html("<img  src='"+url[name]+"' class='img-fluid img-myDatatable'>");
 
                                 }
-                                
+
                                 else if (type === 'video' || type === 'sound'){
 
                                     $(this).children().find('source').attr('src' , url[name])

@@ -39,29 +39,10 @@ class AppServiceProvider extends ServiceProvider
         $blue_zone_cats =  Category::where('parent_id',0)->get();
         $currencies_home=  Currency::get();
          $ads_h= Ad::where('position' , 3)->inRandomOrder()->get();
-        $country = session()->get("country");
-        $currency = session()->get("currency");
-        $currency_def=	Currency::first()->name;
 
-        if($currency != [] || $currency != null) {
-            $currency_def=$currency->name;
-
-        }elseif($country !=[] || $country != null){
-            $m_Country=	Currency::firstwhere('id',$country->currency_id);
-            if($m_Country){
-                $currency_def= $m_Country->name;
-            }
-
-        }elseif(Auth::guard('web')->check()){
-            $m_Country=	Country::with('currency')
-                ->firstwhere('id',Auth::guard('web')->user()->country_id);
-            if($m_Country){
-                $currency_def= $m_Country->currency->name;
-            }
-        }
         app()->setLocale($lang);
 
-               view()->share(compact('currency_def','currencies_home',"kokart_country",'blue_zone_cats','icons','ads_h'));
+               view()->share(compact('currencies_home',"kokart_country",'blue_zone_cats','icons','ads_h'));
 
     }
 }

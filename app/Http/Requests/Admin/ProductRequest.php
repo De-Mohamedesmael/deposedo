@@ -35,9 +35,9 @@ class ProductRequest extends FormRequest
             Trim::class,
         ],
 
-        'slug' => [
-            Slug::class,
-        ],
+//        'slug' => [
+//            Slug::class,
+//        ],
 
         'quantity' => [
             RemoveNonNumeric::class,
@@ -90,17 +90,19 @@ class ProductRequest extends FormRequest
 
         return [
 
+
             'img' => [request()->segment(2) ? 'nullable' : 'required', 'image', 'mimes:jpg,png,jpeg', 'max:2048'],
+            'video' => [ 'nullable','mimes:mp4,mov,ogg | max:20000'],
             'name_ar' => ['required', 'string', 'max:50'],
             'name_en' => ['required', 'string', 'max:50'],
             'description_ar' => ['nullable', 'string'],
             'description_en' => ['nullable', 'string'],
             'slug' => ['nullable', 'string', 'max:50'],
             'quantity' => ['required', 'integer', 'min:0', 'digits_between:1,11'],
-            'serial_number' => ['required', 'min:0', 'unique:products,serial_number,' . $this->id],
+            'serial_number' => ['required', 'min:0', 'unique:products,serial_number, ' . request()->segment(4)],
             'regular_price' => ['required', 'numeric', 'min:0'],
             'sale_price' => ['required_with:in_sale', 'numeric', 'lt:regular_price', 'min:0'],
-            'start_sale' => ['required', 'date_format:Y-m-d'],
+            'start_sale' => ['required_with:in_sale', 'date_format:Y-m-d'],
             'end_sale' => ['nullable', 'date_format:Y-m-d', 'after_or_equal:start_sale', 'after_or_equal:today'],
             'categories' => ['required', 'array'],
             'categories.*' => ['integer'],

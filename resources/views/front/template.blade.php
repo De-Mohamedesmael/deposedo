@@ -39,7 +39,19 @@
                 max-height: 150px !important;
             }
         }
-
+        i.fa.fa-arrow-down-wide-short {
+            font-size: 20px;
+            font-weight: bold;
+            color: #0e4194;
+        }
+        .sortby {
+            font-size: 20px;
+            font-weight: 700;
+            color: #3fc0f0;
+        }
+        a.sortby {
+            font-size: initial;
+        }
     </style>
 @endsection
 @section('content')
@@ -56,9 +68,31 @@
         </ul>
 
     </header>
-    <div class="container  border-main">
-        <h1 class="title-section">{{ $name }} </h1>
-
+    <div class="container  border-main ">
+        <div class="row  ">
+        <div class="col-8" style="padding: 10px;">
+            <h1 class="title-section">{{ $name }} </h1>
+        </div>
+        <div class="col-4" style="padding: 10px;">
+            <div class="nav-link  border-right">
+                <div class="dropdown language-dropdown">
+                    <i class="fa fa-arrow-down-wide-short"></i>
+                    <a data-toggle="dropdown" href="#"><span class="change-text sortby">
+                                  {{ __('site.sortby_'.$sortby)}}
+                              </span> <i class="fa fa-angle-down sortby"></i></a>
+                    <ul class="dropdown-menu language-change  text-center">
+                        @foreach($sortbys as  $sortby_f)
+                            <li>
+                                <a class="sortby" rel="alternate" href="{{ route('productByType',['type'=>$type ,'sortby'=>$sortby_f]) }}">
+                                    {{ __('site.sortby_'.$sortby_f)}}
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div><!-- language-dropdown -->
+            </div>
+        </div>
+        </div>
         <div class="row  ">
 
             <div class="col-md-12 col-12">

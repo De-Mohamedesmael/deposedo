@@ -31,6 +31,36 @@
 
 
 
+<div id="fuSingleFile" class="col-lg-12 layout-spacing">
+    <div class="statbox widget box box-shadow @error('video') border border-danger @enderror">
+        <div class="widget-header">
+            <div class="row">
+                <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                    <h4 class="req">@lang('form.label.min video product') <span class="size-img"> max : 20 m </span></h4>
+                </div>
+                <div class="col-12 text-center">
+                    <video controls width="250">
+                        <source src="{{asset("assets/videos/products/min/$product->video")}}" >
+                    </video>
+                </div>
+            </div>
+        </div>
+        <div class="widget-content widget-content-area">
+            <div class="custom-file-container" data-upload-id="myFirstVideo">
+                <label>@lang('form.label.delete video selected')<a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Video">x</a></label>
+                <label class="custom-file-container__custom-file" >
+                    <input name="video" type="file" class="custom-file-container__custom-file__custom-file-input" accept="video/*" >
+                    <span class="custom-file-container__custom-file__custom-file-control"></span>
+                </label>
+                <div class="custom-file-container__image-preview"></div>
+            </div>
+
+        </div>
+    </div>
+    @error('video')<span class="invalid-feedback font-weight-bold mt-2 d-block" role="alert"><strong>{{$message}}</strong></span>@enderror
+</div>
+
+
 
 <div id="fuSingleFile" class="col-lg-12 layout-spacing">
 

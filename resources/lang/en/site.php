@@ -2,15 +2,15 @@
 
 return [
     'Your password has been changed!'=>'Your password has been changed!',
-    
+
      'We have e-mailed your password reset link!'=>'We have e-mailed your password reset link!',
     'Send Password Reset Link'=>'Send Password Reset Link',
     'Confirm Password'=>'Confirm Password',
     'Reset Password'=>'Reset Password',
         //notification
     'order_new_mail'=>'تم الطلب بنجاح طلبك  الان قيد المراجعة والتنفيذ',
-   
-        
+
+
     'notifi_free_shopping_title'=>'Free shipping is activated',
     'notifi_free_shopping_body'=>'Shop now and enjoy free shipping',
     'notifi_copoun_des_title'=>'Enjoy the discount now!',
@@ -21,8 +21,8 @@ return [
     'notifi_order_step2_body'=>'Your order may be shipped and delivered',
     'notifi_product_title'=>'New product has been added',
     'notifi_product_body'=>'Buy now :productName through our store at special prices',
-    
-    
+
+
     'send_notifi_pro'=>'send notification',
     'invoice_download'=>'Download invoice',
     'app_name' => 'Deposedo',
@@ -77,7 +77,7 @@ return [
     'Email' => 'Email',
     'Follow us on' => 'Follow us on',
     'All rights reserved to kocart 2022 Designed and developed by' => 'All rights reserved to Deposedo 2022 Designed and developed by',
-    'YER' => 'YER',
+    'DZD' => 'DZD',
     'all products' => 'Products',
     'Price' => 'Price',
     'There are no items in the Wish List' => 'There are no items in the Wish List',
@@ -129,7 +129,7 @@ return [
     'total_quantity' => 'Total Quantity',
     'date_of_order' => 'Date of order',
     'order_summary' => 'Order summary',
-    'YER'=>'YER',
+    'DZD'=>'DZD',
     'images_orders'=>'Orders images',
     'day'=>'Day',
     'front_is_order_day'=>'The order will arrive in ',
@@ -156,6 +156,10 @@ return [
     'addToCartDone' => 'Successfully added to cart',
 
 
-
+    'sortby_highestPrice'=>'highest price',
+    'sortby_lowestPrice'=>'lowest price',
+    'sortby_bestSeller'=>'best products',
+    'sortby_new'=>'newest products',
+    'sortby_random'=>'default',
 
 ];

@@ -409,6 +409,54 @@
                 </ul>
             </li>
 
+            {{--/////////// الباكدجات ///////////--}}
+            <li class="menu">
+                <a href="#packages" data-toggle="collapse" data-active="false" aria-expanded="false" class="dropdown-toggle"
+                   id="toggle-packages">
+                    <div class="">
+                        <i class="fa fa-boxes-packing" aria-hidden="true"></i>
+                        <span>@lang('layout.packages')</span>
+                    </div>
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </div>
+                </a>
+                <ul class="collapse submenu list-unstyled" id="packages" data-parent="#accordionExample">
+                    <li id="li-packages">
+                        <a href="{{route('admin.packages.index')}}">@lang('layout.show packages')</a>
+                    </li>
+                    <li id="li-create">
+                        <a href="{{route('admin.packages.create')}}">@lang('layout.add package')</a>
+                    </li>
+                </ul>
+            </li>
+            {{--/////////// المدد للباقات ///////////--}}
+            <li class="menu">
+                <a href="#periods" data-toggle="collapse" data-active="false" aria-expanded="false" class="dropdown-toggle"
+                   id="toggle-periods">
+                    <div class="">
+                        <i class="fa fa-calendar-days" aria-hidden="true"></i>
+                        <span>@lang('layout.periods')</span>
+                    </div>
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </div>
+                </a>
+                <ul class="collapse submenu list-unstyled" id="periods" data-parent="#accordionExample">
+                    <li id="li-periods">
+                        <a href="{{route('admin.periods.index')}}">@lang('layout.show periods')</a>
+                    </li>
+                    <li id="li-create">
+                        <a href="{{route('admin.periods.create')}}">@lang('layout.add periods')</a>
+                    </li>
+                </ul>
+            </li>
 
             {{--/////////// المسئولين ///////////--}}
             <li class="menu">

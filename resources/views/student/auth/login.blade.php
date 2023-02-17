@@ -21,9 +21,14 @@
 
                         <div class="division mt-2">
                         </div>
-                        <a  class="dropdown-item d-flex" href="{{route('student.lang.change' , 'ar')}}"><img width="25" src="{{asset('assets/images/flags/medium_kuwait.png')}}" class="flag-width" alt="flag"> <span class="align-self-center">&nbsp;Arabic</span></a>
-                        <a class="dropdown-item d-flex" href="{{route('student.lang.change' , 'en')}}"><img  width="25" src="{{asset('assets/img/ca.png')}}" class="flag-width" alt="flag"> <span class="align-self-center">&nbsp;English</span></a>
-
+                        <a  rel="alternate" hreflang="{{ 'ar' }}" href="{{ LaravelLocalization::getLocalizedURL('ar', null, [], true) }}" class="dropdown-item d-flex" >
+                            <img src="{{asset('assets/images/flags/ar.png')}}" width="25" class="flag-width" alt="flag">
+                            <span class="align-self-center">&nbsp;Arabic</span>
+                        </a>
+                        <a  rel="alternate" hreflang="{{ 'en' }}" href="{{ LaravelLocalization::getLocalizedURL('en', null, [], true) }}" class="dropdown-item d-flex" >
+                            <img src="{{asset('assets/images/flags/en.png')}}" width="25" class="flag-width" alt="flag">
+                            <span class="align-self-center">&nbsp;English</span>
+                        </a>
                     </div>
                 </div>
             </div>

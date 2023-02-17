@@ -12,21 +12,22 @@
     @error('name_en')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
 </div>
 <div class="form-group col-md-6">
-    <label for="brand_name" class="req">@lang('form.label.brand_name')</label>
+    <label for="brand_name" class="">@lang('form.label.brand_name')</label>
     <input name="brand_name" type="text" maxlength="50" class="form-control @error('brand_name') is-invalid @enderror"
-           id="name_en" value="{{old('brand_name')}}" required>
+           id="name_en" value="{{old('brand_name')}}" >
     @error('brand_name')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
 </div>
 <div class="form-group col-md-6">
-    <label for="seller_name" class="req">@lang('form.label.seller_name')</label>
+    <label for="seller_name" class="">@lang('form.label.seller_name')</label>
     <input name="seller_name" type="text" maxlength="50" class="form-control @error('seller_name') is-invalid @enderror"
-           id="name_en" value="{{old('seller_name')}}" required>
+           id="name_en" value="{{old('seller_name')}}" >
     @error('seller_name')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
 </div>
 
 <div class="form-group col-md-6 d-none">
-    <label for="slug" class="req">@lang('form.label.slug') @lang('form.label.optional')</label>
-    <input name="slug" type="text" maxlength="50" class="form-control @error('slug') is-invalid @enderror" id="slug"
+    <label for="slug" class="">@lang('form.label.slug') @lang('form.label.optional')</label>
+    <input name="slug" type="text" maxlength="50"
+           class="form-control @error('slug') is-invalid @enderror" id="slug"
            value="{{old('slug')}}">
     @error('slug')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
 </div>

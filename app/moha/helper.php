@@ -22,6 +22,30 @@ function get_country_helper(){
     return "Kuwait";
 }
 
+
+function get_currency_helper(){
+            $country = session()->get("country");
+        $currency = session()->get("currency");
+        $currency_def=	\App\Models\Currency::first()->name;
+
+        if($currency != [] || $currency != null) {
+            $currency_def=$currency->name;
+
+        }elseif($country !=[] || $country != null){
+            $m_Country=	\App\Models\Currency::firstwhere('id',$country->currency_id);
+            if($m_Country){
+                $currency_def= $m_Country->name;
+            }
+
+        }elseif(Auth::guard('web')->check()){
+            $m_Country=	\App\Models\Country::with('currency')
+                ->firstwhere('id',Auth::guard('web')->user()->country_id);
+            if($m_Country){
+                $currency_def= $m_Country->currency->name;
+            }
+        }
+        return $currency_def;
+}
 function get_price_helper($price){
     $country = session()->get("country");
     $currency = session()->get("currency");
@@ -49,7 +73,7 @@ function get_price_helper($price){
         }
         }
     }
-    return $price .__('site.YER');
+    return $price .__('site.DZD');
 }
 
 
