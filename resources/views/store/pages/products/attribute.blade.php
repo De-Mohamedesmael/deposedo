@@ -14,14 +14,14 @@
                 <div class="row">
 
                     <div class="col-xl-12 col-lg-12 col-md-12 layout-spacing">
-                        @include('admin.includes.alert_success')
+                        @include('store.includes.alert_success')
 
                         <div class="widget-content widget-content-area">
 
-                            <form method="post" action="{{route('admin.products.store')}}" enctype="multipart/form-data">
+                            <form method="post" action="{{route('store.products.store')}}" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-row mb-4">
-                                    @include('admin.pages.products.form_attribute.form')
+                                    @include('store.pages.products.form_attribute.form')
                                 </div>
 
                                 <button type="submit" class="btn btn-primary mt-3">اضافة منتج جديد</button>
