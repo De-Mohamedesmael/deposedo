@@ -1,4 +1,4 @@
-<form method="post" action="{{route('admin.products.store')}}" enctype="multipart/form-data">
+<form method="post" action="{{route('store.products.store')}}" enctype="multipart/form-data">
     @csrf
     <div class="form-row mb-4">
 
