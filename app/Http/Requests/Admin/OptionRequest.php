@@ -15,12 +15,12 @@ class OptionRequest extends FormRequest
 
     protected $sanitizers = [
         'name_ar' => [
-            StripTags::class,
+
             TrimDuplicateSpaces::class,
         ],
 
         'name_en' => [
-            StripTags::class,
+
             TrimDuplicateSpaces::class,
         ],
 

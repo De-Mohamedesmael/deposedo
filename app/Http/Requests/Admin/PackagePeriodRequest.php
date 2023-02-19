@@ -16,12 +16,12 @@ class PackagePeriodRequest extends FormRequest
 
     protected $sanitizers = [
         // 'name_ar' => [
-        //     StripTags::class,
+        //
         //     TrimDuplicateSpaces::class,
         // ],
 
         // 'name_en' => [
-        //     StripTags::class,
+        //
         //     TrimDuplicateSpaces::class,
         // ],
 
@@ -30,7 +30,7 @@ class PackagePeriodRequest extends FormRequest
         // ],
 
         // 'parent_id' => [
-        //     StripTags::class,
+        //
         // ],
 
 

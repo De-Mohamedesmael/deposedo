@@ -16,17 +16,17 @@ class UserRequest extends FormRequest
 
     protected $sanitizers = [
         'name' => [
-            StripTags::class,
+
             TrimDuplicateSpaces::class,
         ],
 
         'email' => [
-            StripTags::class,
+
             TrimDuplicateSpaces::class,
         ],
 
         'phone' => [
-            StripTags::class,
+
             RemoveNonNumeric::class,
         ],
 
