@@ -1,7 +1,7 @@
 
 <div class="form-group col-md-6 d-none" id="day_order_dev">
     <label for="day_order"> @lang('form.label.day_order')</label>
-    <input name="day_order" type="number" class="form-control @error('day_order') is-invalid @enderror" id="day_order"  value="{{old('day_order',0)}}" step="any" >
+    <input name="day_order" type="number" class="form-control @error('day_order') is-invalid @enderror" id="day_order"  value="{{old('day_order',1)}}" step="any" >
     @error('day_order')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
 </div>
 <div class="form-group col-md-6">
