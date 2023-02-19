@@ -21,14 +21,14 @@ class RedirectIfNotStudent
     public function handle($request, Closure $next, $guard = 'student')
     {
         if (Auth::guard($guard)->check() && !Auth::guard($guard)->user()->is_active) {
-            return redirect()->route('student.notActive');
+            return redirect()->route('store.notActive');
         }
 
         if (Auth::guard($guard)->check()) {
             return $next($request);
         }
 
-        $redirectToRoute = $request->expectsJson() ? '' : route('student.login');
+        $redirectToRoute = $request->expectsJson() ? '' : route('store.login');
 
         throw new AuthenticationException(
             'Unauthenticated.', [$guard], $redirectToRoute

@@ -8,7 +8,7 @@
 {{--                </a>--}}
             </li>
             <li class="nav-item theme-text">
-                <a href="{{route('admin.home')}}" class="nav-link"> Deposedo </a>
+                <a href="{{route('admin.home')}}" class="nav-link"> DepoSedo </a>
             </li>
         </ul>
 

@@ -44,10 +44,10 @@ class RouteServiceProvider extends ServiceProvider
                 ->namespace($this->namespace)
                 ->group(base_path('routes/api_v1.php'));
 
-            Route::as('student.')
+            Route::as('store.')
                 ->middleware('web')
-                ->namespace('App\Http\Controllers\Student')
-                ->group(base_path('routes/student.php'));
+                ->namespace('App\Http\Controllers\Store')
+                ->group(base_path('routes/store.php'));
 
             Route::as('admin.')
                 ->middleware('web')

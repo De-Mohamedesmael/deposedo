@@ -505,7 +505,7 @@ class cartController extends Controller
                           $save->total_price=($price + $govern->shipping_price )-$discount;
                           $save->order_price=$price;
                         //   dd($student_id);
-                          $save->brand_id= $student_id;
+                          $save->brand_id= null;
                           $save->save();
                           if($request->type=="knet"){
 
@@ -520,10 +520,10 @@ class cartController extends Controller
                                         $from=env('MAIL_FROM_ADDRESS');
                                     $data["subject"]= 'order';
 
-                                        Mail::send('emails.orderStore', $data, function ($message) use ($data, $from) {
-                                            $message->from($from)->to($data["email"], $data["email"] )
-                                            ->subject($data["subject"]);
-                                         });
+//                                        Mail::send('emails.orderStore', $data, function ($message) use ($data, $from) {
+//                                            $message->from($from)->to($data["email"], $data["email"] )
+//                                            ->subject($data["subject"]);
+//                                         });
                                   }
                                  $save->save();
                                 session()->forget('cart');

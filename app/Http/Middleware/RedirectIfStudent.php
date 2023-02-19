@@ -18,7 +18,7 @@ class RedirectIfStudent
     public function handle($request, Closure $next, $guard = 'student')
     {
         if (Auth::guard($guard)->check()) {
-            return redirect()->route('student.login');
+            return redirect()->route('store.home');
         }
 
         return $next($request);

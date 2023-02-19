@@ -34,6 +34,9 @@
             overflow-x: scroll;
 
         }
+        th.theOrderColumn.th-imaget {
+            min-width: 200px !important;
+        }
         img.img-item-one {
             width: 80px;
             padding: 5px;
@@ -66,7 +69,7 @@
 
             }
         });
-        
+
         $('#a-orders').attr('data-active',"true");
         $('#orders').addClass('show');
         $('#li-cach-orders').addClass('active');

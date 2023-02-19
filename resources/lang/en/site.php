@@ -25,7 +25,7 @@ return [
 
     'send_notifi_pro'=>'send notification',
     'invoice_download'=>'Download invoice',
-    'app_name' => 'Deposedo',
+    'app_name' => 'DepoSedo',
     'more' => 'See More',
     'please_Select' => 'Please choose a ',
     'add to wishlist' => 'add to wishlist',
@@ -76,7 +76,7 @@ return [
     'Call' => 'Call',
     'Email' => 'Email',
     'Follow us on' => 'Follow us on',
-    'All rights reserved to kocart 2022 Designed and developed by' => 'All rights reserved to Deposedo 2022 Designed and developed by',
+    'All rights reserved to kocart 2022 Designed and developed by' => 'All rights reserved to DepoSedo 2022 Designed and developed by',
     'DZD' => 'DZD',
     'all products' => 'Products',
     'Price' => 'Price',

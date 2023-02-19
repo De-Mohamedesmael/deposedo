@@ -144,9 +144,9 @@ return [
   'show users' => 'show users',
   'add user' => 'add a new user',
 
-  'students' => 'Brands',
-  'show students' => 'show Brands',
-  'add student' => 'add a new Brands',
+  'students' => 'Stores',
+  'show students' => 'show Stores',
+  'add student' => 'add a new Stores',
 
 
   'admins' => 'admins',
@@ -221,10 +221,10 @@ return [
   'show cars' => 'show cars',
   'add cars' => 'add cars',
 
-  'brands' => 'brands',
-  'show brands' => 'show brands',
-  'add brand' => 'add brand',
-  'add brands' => 'add brands',
+  'brands' => 'Stores',
+  'show brands' => 'show Stores',
+  'add brand' => 'add Store',
+  'add brands' => 'add Stores',
 
   'marka' => 'marka',
   'show marka' => 'show marka',

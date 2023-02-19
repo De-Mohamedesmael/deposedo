@@ -35,7 +35,7 @@
 
 			     <li  class="moha" ><a style="" href="{{route("subCategories.index")}}"><i class="fa fa-list"></i> <span>  @lang('site.categories')  </span></a></li>
 
-			    <li  class="moha" ><a style="" href="{{route("subSubCategories.index")}}"><i class="fa fa-list"></i> <span> 
+			    <li  class="moha" ><a style="" href="{{route("subSubCategories.index")}}"><i class="fa fa-list"></i> <span>
 			    @lang('site.sub_cat')
 			    </span></a></li>
 
@@ -69,19 +69,19 @@
            <li  class="moha" ><a style="" href="{{route("slashes.index")}}"><i class="fa fa-list"></i> <span>
                @lang('site.ads')
             </span></a></li>
-			    <li  class="moha" ><a style="" href="{{route("store.index")}}"><i class="fa fa-list"></i> <span> 
+			    <li  class="moha" ><a style="" href="{{route("store.index")}}"><i class="fa fa-list"></i> <span>
 			    @lang('site.sales')
 			    </span></a></li>
-                  <li  class="moha" ><a style="" href="{{route("clients.index")}}"><i class="fa fa-list"></i> <span> 
+                  <li  class="moha" ><a style="" href="{{route("clients.index")}}"><i class="fa fa-list"></i> <span>
                   @lang('site.users')
                   </span></a></li>
-                  <li  class="moha" ><a style="" href="{{route("pages.index")}}"><i class="fa fa-list"></i> <span> 
-                  
+                  <li  class="moha" ><a style="" href="{{route("pages.index")}}"><i class="fa fa-list"></i> <span>
+
                   @lang('site.pages')
                   </span></a></li>
 
-			  <li  class="moha" ><a style="" href="{{route("items.storeg")}}"><i class="fa fa-list"></i> <span> 
-			  
+			  <li  class="moha" ><a style="" href="{{route("items.storeg")}}"><i class="fa fa-list"></i> <span>
+
 			  @lang('site.finished')
 			  </span></a></li>
 
@@ -119,7 +119,7 @@
          KOCART
         </div>
         <!-- Default to the left -->
-        <strong>Copyright &copy; 2020 <a href="#">blueZone</a>.</strong> All rights reserved.
+        <strong>Copyright &copy; 2020 <a href="#">CodeStock</a>.</strong> All rights reserved.
       </footer>
 
       <!-- Control Sidebar -->
