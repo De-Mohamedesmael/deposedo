@@ -17,12 +17,12 @@ class IconRequest extends FormRequest
     protected $sanitizers = [
 
         'title' => [
-            StripTags::class,
+
             TrimDuplicateSpaces::class
         ],
 
         'link' => [
-            StripTags::class,
+
         ]
     ];
 

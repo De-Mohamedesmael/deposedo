@@ -2,13 +2,13 @@
   <footer class="main-footer" style="background: #000;color:#fff">
     <!-- To the right -->
     <div class="pull-right hidden-xs">
-    Code-Stack
+    DepoSedo
     </div>
     <!-- Default to the left -->
     <strong>Copyright &copy; 2020 <a style="color: rgb(12, 34, 199)" href="#">Company</a>.</strong> All rights reserved.
   </footer>
 
- 
+
   <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->
   <div class="control-sidebar-bg"></div>

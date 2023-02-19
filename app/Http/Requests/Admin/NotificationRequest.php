@@ -15,22 +15,22 @@ class NotificationRequest extends FormRequest
 
     protected $sanitizers = [
         'title_ar' => [
-            StripTags::class,
+
             TrimDuplicateSpaces::class,
         ],
 
         'title_en' => [
-            StripTags::class,
+
             TrimDuplicateSpaces::class,
         ],
 
       'note_ar' => [
-            StripTags::class,
+
             Trim::class,
         ],
 
         'note_en' => [
-            StripTags::class,
+
             Trim::class,
         ],
 

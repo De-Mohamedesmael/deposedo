@@ -15,13 +15,13 @@ class RatingRequest extends FormRequest
     protected $sanitizers = [
 
         'rating' => [
-            StripTags::class,
+
             RemoveNonNumeric::class,
         ],
 
 
         'comment' => [
-            StripTags::class,
+
             TrimDuplicateSpaces::class,
         ],
 

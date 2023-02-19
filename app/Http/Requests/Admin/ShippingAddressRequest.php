@@ -15,23 +15,23 @@ class ShippingAddressRequest extends FormRequest
     protected $sanitizers = [
 
         'name' => [
-            StripTags::class,
+
         ],
 
         'email' => [
-            StripTags::class,
+
         ],
 
         'phone' => [
-            StripTags::class,
+
         ],
 
         'phone2' => [
-            StripTags::class,
+
         ],
 
         'address' => [
-            StripTags::class,
+
             TrimDuplicateSpaces::class,
         ],
 

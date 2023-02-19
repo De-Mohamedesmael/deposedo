@@ -18,12 +18,12 @@ class AdRequest extends FormRequest
     protected $sanitizers = [
 
         'title' => [
-            StripTags::class,
+
             TrimDuplicateSpaces::class
         ],
 
         'link' => [
-            StripTags::class,
+
         ],
 
         'position' => [

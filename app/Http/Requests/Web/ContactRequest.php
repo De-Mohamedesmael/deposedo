@@ -15,26 +15,26 @@ class ContactRequest extends FormRequest
     protected $sanitizers = [
 
         'title' => [
-            StripTags::class,
+
         ],
 
         'name' => [
-            StripTags::class,
+
         ],
 
 
 
         'email' => [
-            StripTags::class,
+
         ],
 
         'phone' => [
-            StripTags::class,
+
         ],
 
 
         'message' => [
-            StripTags::class,
+
             TrimDuplicateSpaces::class,
         ],
 

@@ -15,17 +15,17 @@ class InfoRequest extends FormRequest
 
     protected $sanitizers = [
         'title' => [
-            StripTags::class,
+
             TrimDuplicateSpaces::class,
         ],
 
         'description_ar' => [
-            // StripTags::class,
+            //
             TrimDuplicateSpaces::class,
         ],
 
         'description_en' => [
-            // StripTags::class,
+            //
             TrimDuplicateSpaces::class,
         ],
 

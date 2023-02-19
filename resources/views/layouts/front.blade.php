@@ -775,7 +775,7 @@
                         <div class="col-12">
                             <div class=" text-center p-2">
                                  @lang('site.All rights reserved to kocart 2022 Designed and developed by')
-                                <a href="#" class="main-color" style="color: #55708B !important;">Code-Stack</a>
+                                <a href="#" class="main-color" style="color: #55708B !important;">DepoSedo</a>
                             </div>
 
                         </div>

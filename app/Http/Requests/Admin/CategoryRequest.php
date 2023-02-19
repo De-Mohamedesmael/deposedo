@@ -15,12 +15,12 @@ class CategoryRequest extends FormRequest
 
     protected $sanitizers = [
         'name_ar' => [
-            StripTags::class,
+
             TrimDuplicateSpaces::class,
         ],
 
         'name_en' => [
-            StripTags::class,
+
             TrimDuplicateSpaces::class,
         ],
 
@@ -29,7 +29,7 @@ class CategoryRequest extends FormRequest
         ],
 
         'parent_id' => [
-            StripTags::class,
+
         ],
 
 
