@@ -50,7 +50,7 @@
 
             }
         }
-        
+
     </script>
     <script src="{{asset('assets/plugins/bootstrap-maxlength/bootstrap-maxlength.js')}}"></script>
     <script src="{{asset('assets/plugins/file-upload/file-upload-with-preview.min.js')}}"></script>

@@ -35,7 +35,9 @@
             overflow-x: scroll;
 
         }
-
+        th.theOrderColumn.th-imaget {
+            min-width: 200px !important;
+        }
         img.img-item-one {
             width: 80px;
             padding: 5px;

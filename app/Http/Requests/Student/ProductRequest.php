@@ -17,53 +17,56 @@ class ProductRequest extends FormRequest
 
     protected $sanitizers = [
         'name_ar' => [
-            StripTags::class,
+
             TrimDuplicateSpaces::class,
         ],
 
         'name_en' => [
-            StripTags::class,
+
             TrimDuplicateSpaces::class,
         ],
 
         'description_ar' => [
-            StripTags::class,
+
             Trim::class,
         ],
 
         'description_en' => [
-            StripTags::class,
+
             Trim::class,
         ],
 
-        'slug' => [
-            Slug::class,
-        ],
+//        'slug' => [
+//            Slug::class,
+//        ],
 
         'quantity' => [
             RemoveNonNumeric::class,
-            StripTags::class,
+
+        ],
+        'serial_number' => [
+            RemoveNonNumeric::class,
+
         ],
 
         'regular_price' => [
-            StripTags::class,
+
         ],
 
         'sale_price' => [
-            StripTags::class,
+
         ],
 
         'start_sale' => [
-            StripTags::class,
+
         ],
         'end_sale' => [
-            StripTags::class,
+
         ],
 
         'alt' => [
-            StripTags::class,
-        ],
 
+        ],
     ];
     /**
      * Determine if the user is authorized to make this request.
@@ -85,70 +88,48 @@ class ProductRequest extends FormRequest
 
 
         return [
+            'img' => [request()->segment(2) ? 'nullable' : 'required', 'image', 'mimes:jpg,png,jpeg', 'max:2048'],
+            'video' => [ 'nullable','mimes:mp4,mov,ogg | max:20000'],
+            'name_ar' => ['required', 'string', 'max:50'],
+            'name_en' => ['required', 'string', 'max:50'],
+            'description_ar' => ['nullable', 'string'],
+            'description_en' => ['nullable', 'string'],
+            'slug' => ['nullable', 'string', 'max:50'],
+            'quantity' => ['required', 'integer', 'min:0', 'digits_between:1,11'],
+            'serial_number' => ['required', 'min:0', 'unique:products,serial_number, ' . request()->segment(4)],
+            'regular_price' => ['required', 'numeric', 'min:0'],
+            'sale_price' => ['required_with:in_sale', 'numeric', 'lt:regular_price', 'min:0'],
+            'start_sale' => ['required_with:in_sale', 'date_format:Y-m-d'],
+            'end_sale' => ['nullable', 'date_format:Y-m-d', 'after_or_equal:start_sale', 'after_or_equal:today'],
+            'categories' => ['required', 'array'],
+            'categories.*' => ['integer'],
+            'images' => ['nullable', 'array'],
+            'images.*' => ['image', 'mimes:jpg,png,jpeg'],
 
-            'img'                                 => [request()->segment(2) ? 'nullable' : 'required' , 'image', 'mimes:jpg,png,jpeg,gif,svg', 'max:2048'],
-            'name_ar'                             => ['required' , 'string'  , 'max:50'],
-            'name_en'                             => ['required' , 'string'  , 'max:50'],
-            'description_ar'                      => ['nullable' , 'string'],
-            'description_en'                      => ['nullable' , 'string'],
-            'slug'                                => ['nullable' , 'string'  , 'max:50'],
-            'quantity'                            => ['required' , 'integer', 'min:0' , 'digits_between:1,11'],
-            'regular_price'                       => ['required' , 'numeric' , 'min:0'],
-            'sale_price'                          => ['required_with:in_sale' , 'numeric'  , 'lt:regular_price' , 'min:0'],
-            'start_sale'                          => ['required' , 'date_format:Y-m-d'],
-            'end_sale'                            => ['nullable', 'date_format:Y-m-d' , 'after_or_equal:start_sale', 'after_or_equal:today'],
-
-            'images'                              => ['nullable' , 'array'],
-            'images.*'                            => ['image', 'mimes:jpg,png,jpeg,gif,svg'],
-
-            'statements'                          => ['nullable' , 'array'],
-            'statements.*'                        => ['required_with:statements' , 'array'],
-            'statements.*.name_ar'                => ['required', 'string' , 'max:50'],
+            'statements' => ['nullable', 'array'],
+            'statements.*' => ['required_with:statements', 'array'],
+            'statements.*.name_ar' => ['required', 'string', 'max:50'],
             // 'statements.*.value_ar'               => ['required', 'string' , 'max:50'],
-            'statements.*.name_en'                => ['required', 'string' , 'max:50'],
+            'statements.*.name_en' => ['required', 'string', 'max:50'],
             // 'statements.*.value_en'               => ['required', 'string' , 'max:50'],
 
-            'kurly'                          => ['nullable' , 'array'],
-            'kurly.*'                        => ['required_with:kurly' , 'array'],
-            'kurly.*.name_ar'                => ['required', 'string' , 'max:50'],
+            'kurly' => ['nullable', 'array'],
+            'kurly.*' => ['required_with:kurly', 'array'],
+            'kurly.*.name_ar' => ['required', 'string', 'max:50'],
             // 'kurly.*.value_ar'               => ['required', 'string' , 'max:50'],
-            'kurly.*.name_en'                => ['required', 'string' , 'max:50'],
+            'kurly.*.name_en' => ['required', 'string', 'max:50'],
             // 'kurly.*.value_en'               => ['required', 'string' , 'max:50'],
 
-            'attributes'                          => ['required_with:has_options' , 'array'],
-            'attributes.*.id'                     => ['required' , 'integer' , 'exists:attributes,id'],
-            'attributes.*.option'                 => ['required' , 'array'],
-            'attributes.*.option.*.id'            => ['required', 'integer' , 'exists:options,id'],
+            'attributes' => ['required_with:has_options', 'array'],
+            'attributes.*.id' => ['required', 'integer', 'exists:attributes,id'],
+            'attributes.*.option' => ['required', 'array'],
+            'attributes.*.option.*.id' => ['required', 'integer', 'exists:options,id'],
             // 'attributes.*.option.*.regular_price' => ['required', 'numeric' , 'min:0'],
             // 'attributes.*.option.*.sale_price'    => ['nullable', 'numeric' , 'min:0' , 'lt:attributes.*.option.*.regular_price'],
-            'attributes.*.option.*.quantity'      => ['required', 'integer' , 'digits_between:1,11'],
-            'attributes.*.option.*.parent_id'     => ['nullable', 'string' , 'digits_between:1,11'],
+            'attributes.*.option.*.quantity' => ['required', 'integer', 'digits_between:1,11'],
+            'attributes.*.option.*.parent_id' => ['nullable', 'string', 'digits_between:1,11'],
         ];
     }
-
-
-//    public function attributes()
-//    {
-//        return [
-//            'statements.*.name_ar' => 'اسم الميزه باللغة العربية',
-//            'statements.*.name_en' => 'اسم الميزه باللغة الانجليزيه',
-//            'statements.*.value_ar' => 'قيمة الميزه باللغة العربية',
-//            'statements.*.value_en' => 'قيمة الميزه باللغة الانجليزيه',
-//
-//            'kurly.*.name_ar' => 'اسم الميزه باللغة العربية',
-//            'kurly.*.name_en' => 'اسم الميزه باللغة الانجليزيه',
-//            'kurly.*.value_ar' => 'قيمة الميزه باللغة العربية',
-//            'kurly.*.value_en' => 'قيمة الميزه باللغة الانجليزيه',
-//
-//            'attributes.*.name.name_ar' => 'اسم الخاصية باللغة العربية',
-//            'attributes.*.name.name_en' => 'اسم الخاصية باللغة الانجليزية',
-//            'attributes.*.option.*.id' => 'المعرف',
-//            'attributes.*.option.*.quantity' => 'القيمه',
-//            'attributes.*.option.*.regular_price' => 'السعر',
-//            'attributes.*.option.*.sale_price' => 'سعر الخصم',
-//
-//        ];
-//    }
 
     public function messages()
     {

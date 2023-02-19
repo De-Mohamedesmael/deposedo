@@ -6,7 +6,7 @@
     <!-- ///// meta ///// -->
     @include('admin.includes.meta')
 
-    <title>Deposedo</title>
+    <title>DepoSedo</title>
 
     <!-- ///// style css ///// -->
     @include('admin.includes.styleAuth')

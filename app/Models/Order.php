@@ -14,7 +14,13 @@ class Order extends Model
 
     public function products()
     {
+        if(auth()->guard('student')->id()){
+            return $this->belongsToMany(Product::class, 'product_order')
+                ->wherePivot('student_id', auth()->guard('student')->id())
+                ->select(['products.id', 'name_ar', 'name_en', 'slug', 'description_ar', 'description_en', 'is_recommended', 'is_best', 'in_sale', 'end_sale', 'ratings', 'likes_count', 'img', 'is_clothes'])
+                ->withPivot(['product_name', 'quantity', 'sale_price', 'regular_price', 'attributes', 'end_price']);
 
+        }
         return $this->belongsToMany(Product::class, 'product_order')
             ->select(['products.id', 'name_ar', 'name_en', 'slug', 'description_ar', 'description_en', 'is_recommended', 'is_best', 'in_sale', 'end_sale', 'ratings', 'likes_count', 'img', 'is_clothes'])
             ->withPivot(['product_name', 'quantity', 'sale_price', 'regular_price', 'attributes', 'end_price']);

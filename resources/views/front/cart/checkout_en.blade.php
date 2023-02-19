@@ -119,8 +119,8 @@
           <div class="col-12 border">
             <div class="btn-dark row">
               <h4 class=" col-12 mr-0">   {{__('site.Order Summary')}}</h4>
-              
-              
+
+
             </div><br>
             <?php $total=0 ; $order_is_order = 0;?>
             @if(session('cart'))
@@ -131,11 +131,11 @@
                     $total += $details['price'] * $details['quantity'] ;
                     $product = \App\Models\Product::where('id', $details['id'])->first();
                   @endphp
-                  
+
                     @if($order_is_order != 1 && $product -> is_order ==1)
                         <?php $order_is_order = 1;?>
                     @endif
-                    
+
                   <div class="row ">
                     <a href="{{route("product",$product->id)}}" class=" col-3">
                       <img alt="{{$product->name}}" src="{{asset('assets/images/products/min/'.$product->img)}}" width="80px;">
@@ -177,12 +177,13 @@
 
             </label>
           </div><br>
-          <div class="form-check">
-            <input class="form-check-input mt-3" type="radio" name="type" id="exampleRadios2" value="knet">
-            <label class="form-check-label" for="exampleRadios2">
-              <img src="{{asset('front/img/cash.png')}}" class="w-100">
-            </label>
-          </div><hr><br>
+{{--          <div class="form-check">--}}
+{{--            <input class="form-check-input mt-3" type="radio" name="type" id="exampleRadios2" value="knet">--}}
+{{--            <label class="form-check-label" for="exampleRadios2">--}}
+{{--              <img src="{{asset('front/img/cash.png')}}" class="w-100">--}}
+{{--            </label>--}}
+{{--          </div>--}}
+              <hr><br>
           <p>{{__('site.Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our')}} <a href="{{route('front.info','PrivacyPolicy')}}" target="_blank" class="main-color">{{__('site.PrivacyPolicy2')}}</a>
 
           </p>

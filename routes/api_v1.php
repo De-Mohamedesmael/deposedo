@@ -20,10 +20,10 @@ use App\Http\Controllers\Web\Api\ContactController;
 use App\Http\Controllers\Web\Api\InfoController;
 use App\Http\Controllers\Web\Api\SearchProductController;
 use App\Http\Controllers\Web\Api\IconController;
-use App\Http\Controllers\Student\Api\StudentController;
+use App\Http\Controllers\Store\Api\StudentController;
 
 use App\Http\Controllers\Web\Api\NotificationController;
-use App\Http\Controllers\Student\Api\AuthController as AuthStudentController;
+use App\Http\Controllers\Store\Api\AuthController as AuthStudentController;
 
 const Response_Success = 1;
 const Response_Fail = 0;

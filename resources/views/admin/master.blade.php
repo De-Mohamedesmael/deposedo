@@ -6,7 +6,7 @@
     <!-- ///// meta ///// -->
     @include('admin.includes.meta')
 
-    <title>Deposedo</title>
+    <title>DepoSedo</title>
     <link rel="shortcut icon" href="{{asset('assets/images/favicon.png')}}" />
 
     <!-- ///// style css ///// -->
