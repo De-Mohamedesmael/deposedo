@@ -708,15 +708,26 @@
                         </div>
                         <div class="col-lg-3 col-sm-6 col-6">
                         <h5 class="text-right black-c">@lang('site.Contact us links')</h5>
+
+
+                            @php
+                                $phone = \App\Models\Setting::where('name','phone')->first();
+                                $facebook = \App\Models\Setting::where('name','facebook')->first();
+                                $instagram = \App\Models\Setting::where('name','instagram')->first();
+                                $snapchat = \App\Models\Setting::where('name','snapchat')->first();
+                                $google = \App\Models\Icon::where('title','google')->first();
+                                $iphone = \App\Models\Icon::where('title','iphone')->first();
+                            @endphp
                           <ul class="navbar-nav  w-100 p-0" >
+                              @if($phone)
                                 <li class="nav-item">
-                                    <a class="nav-link  "  href="tel:{{\App\Models\Setting::where('name','phone')->first()->description }}" >  @lang('site.Call') : <img class="icon-img footer-icon" src="{{asset('assets/images/icons/164926728115538.png')}}" alt="">
+                                    <a class="nav-link  "  href="tel:{{$phone->description }}" >  @lang('site.Call') : <img class="icon-img footer-icon" src="{{asset('assets/images/icons/164926728115538.png')}}" alt="">
                                         <img class="icon-img footer-icon" src="{{asset('assets/images/icons/164926729491308.png')}}" alt="">
                                     </a>
                                 </li>
-                                {{-- <li class="nav-item  border-bottom">
-                                    <a class="nav-link  "  href="" >  @lang('site.Email') : {{\App\Models\Setting::where('name','email')->first()->description }}</a>
-                                </li> --}}
+                              @endif
+
+
                                 <li class="nav-item ">
                                     <a class="nav-link  "  href="{{route("contact")}}" > @lang('site.contact us')</a>
                                 </li>
@@ -727,21 +738,25 @@
                         <h5 class="text-center black-c">@lang('site.Follow us on')</h5>
 
                           <ul class="navbar-nav  w-100 p-0 justify-content-center" style="flex-direction: row" >
+                              @if($facebook)
                                 <li class="nav-item  p-1">
-                                    <a class="nav-link  "  href="{{\App\Models\Icon::where('title','facebook')->first()->link }}" target="_blank"> <img class="icon-img footer-icon" src="{{asset('assets/images/icons/164926746970148.png')}}" alt="">
+                                    <a class="nav-link  "  href="{{$facebook->link }}" target="_blank"> <img class="icon-img footer-icon" src="{{asset('assets/images/icons/164926746970148.png')}}" alt="">
                                     </a>
                                 </li>
+                              @endif
+                              @if($instagram)
                                 <li class="nav-item  p-1">
-                                    <a class="nav-link  "  href="{{\App\Models\Icon::where('title','instagram')->first()->link }}" target="_blank"> <img class="icon-img footer-icon" src="{{asset('assets/images/icons/164920274952956.png')}}" alt="">
+                                    <a class="nav-link  "  href="{{$instagram->link }}" target="_blank"> <img class="icon-img footer-icon" src="{{asset('assets/images/icons/164920274952956.png')}}" alt="">
                                     </a>
                                 </li>
+                              @endif
+                              @if($snapchat)
                                 <li class="nav-item  p-1">
-                                    <a class="nav-link  "  href="{{\App\Models\Icon::where('title','snapchat')->first()->link }}" target="_blank"> <img class="icon-img footer-icon" src="{{asset('assets/images/icons/164920269479238.png')}}" alt="">
+                                    <a class="nav-link  "  href="{{$snapchat->link }}" target="_blank"> <img class="icon-img footer-icon" src="{{asset('assets/images/icons/164920269479238.png')}}" alt="">
                                     </a>
                                 </li>
-                                {{-- <li class="nav-item  border-bottom">
-                                    <a class="nav-link  "  href="" >  @lang('site.Email') : {{\App\Models\Setting::where('name','email')->first()->description }}</a>
-                                </li> --}}
+                              @endif
+
 
 
                             </ul>
@@ -749,22 +764,18 @@
                         <div class="col-lg-3 col-sm-6 col-6">
                           <h5 class="text-center black-c">@lang('site.download_app')</h5>
                           <ul class="navbar-nav  w-100 p-0 justify-content-center" style="flex-direction: row" >
-
-                                {{-- <li class="nav-item  p-1" >
-                                    <a class="nav-link  "  href="" style="padding: 7px;
-    border-radius: 50%;
-    border: 4px solid;
-    margin: 4px;"> <i class="fab fa-android" aria-hidden="true"></i>
-                                    </a>
-                                </li> --}}
+                              @if($google)
                                 <li class="nav-item  p-1" style="background: none !important;">
-                                    <a class="nav-link  a-mob-down"  href="{{\App\Models\Icon::where('title','google')->first()->link }}" target="_blank"> <i class="icon-mob-down fab fa-google-play" style='color: #fff !important;padding: 5px 0 5px 10px !important;'></i>
+                                    <a class="nav-link  a-mob-down"  href="{{$google->link }}" target="_blank"> <i class="icon-mob-down fab fa-google-play" style='color: #fff !important;padding: 5px 0 5px 10px !important;'></i>
                                     </a>
                                 </li>
+                              @endif
+                              @if($iphone)
                                 <li class="nav-item  p-1" style="background: none !important;">
-                                    <a class="nav-link a-mob-down "  href="{{\App\Models\Icon::where('title','iphone')->first()->link }}" target="_blank"> <i class="icon-mob-down fab fa-app-store"style='color: #fff !important;' ></i>
+                                    <a class="nav-link a-mob-down "  href="{{$iphone->link }}" target="_blank"> <i class="icon-mob-down fab fa-app-store"style='color: #fff !important;' ></i>
                                     </a>
                                 </li>
+                              @endif
                                 {{-- <li class="nav-item  border-bottom">
                                     <a class="nav-link  "  href="" >  @lang('site.Email') : {{\App\Models\Setting::where('name','email')->first()->description }}</a>
                                 </li> --}}

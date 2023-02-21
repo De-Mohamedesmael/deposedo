@@ -155,11 +155,15 @@ return [
 
     'addToCartDone' => 'Successfully added to cart',
 
-
+    'create ContactRequest' => 'Your message has been sent successfully, we will contact you as soon as possible',
     'sortby_highestPrice'=>'highest price',
     'sortby_lowestPrice'=>'lowest price',
     'sortby_bestSeller'=>'best products',
     'sortby_new'=>'newest products',
     'sortby_random'=>'default',
-
+    'We are happy to receive your inquiries and suggestions.'=>'We are happy to receive your inquiries and suggestions.',
+    'phone number'=>'Phone Number',
+    'title'=>'Subject',
+    'message'=>'your Message',
+    'send'=>'Send',
 ];

@@ -1,4 +1,4 @@
-<form method="post" action="{{route('admin.countries.store')}}" enctype="multipart/form-data">
+<form method="post" action="{{route('admin.currencies.store')}}" enctype="multipart/form-data">
     @csrf
     <div class="form-row mb-4">
 

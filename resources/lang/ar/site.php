@@ -195,6 +195,10 @@ return [
     'sortby_bestSeller'=>'افضل المنتجات',
     'sortby_new'=>'احدث المنتجات',
     'sortby_random'=>'افتراضياً',
-
-
+    'create ContactRequest'=>'تم ارسال رسالتك بنجاح سيتم التواصل معك في اقرب وقت',
+    'We are happy to receive your inquiries and suggestions.'=>'يسعدنا تلقي استفساراتكم واقتراحاتكم',
+    'phone number'=>'رقم هاتفك',
+    'title'=>'الموضوع',
+    'message'=>'رسالتك',
+    'send'=>'ارسال',
 ];
