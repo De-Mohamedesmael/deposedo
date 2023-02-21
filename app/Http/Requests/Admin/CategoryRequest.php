@@ -52,7 +52,7 @@ class CategoryRequest extends FormRequest
      */
     public function rules()
     {
-        $pagesSection = request()->segment(1) === 'sections' || request()->segment(2) === 'sections';
+        $pagesSection = request()->segment(2) === 'sections' || request()->segment(3) === 'sections';
 
         return [
 

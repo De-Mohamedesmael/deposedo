@@ -127,7 +127,7 @@ Route::get('contact-us', function() {
 
       return view("front.contact");
   })->name("contact");
-
+    Route::post('contact-us',[InfoController::class,"SaveContact"]);
 Route::get('info/{type}', [InfoController::class,"index"] )->name("front.info");
 Route::get('set-currency/{currency_id}', [homeController::class,"changeCurrency"] )->name("front.set-currency");
 
