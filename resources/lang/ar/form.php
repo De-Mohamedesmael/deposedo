@@ -249,7 +249,7 @@ return [
         'order date' => 'تاريخ الطلب',
         'order number' => 'رقم الطلب',
         'product' => 'المنتج',
-        'default currency' => 'د.ك',
+        'default currency' => 'د.ج',
         'quantity' => 'الكمية',
         'price' => 'السعر',
         'address' => 'العنوان',
