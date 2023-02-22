@@ -715,6 +715,7 @@
                                 $facebook = \App\Models\Setting::where('name','facebook')->first();
                                 $instagram = \App\Models\Setting::where('name','instagram')->first();
                                 $snapchat = \App\Models\Setting::where('name','snapchat')->first();
+                                $icons = \App\Models\Icon::whereNotin('title',['google','iphone'])->get();
                                 $google = \App\Models\Icon::where('title','google')->first();
                                 $iphone = \App\Models\Icon::where('title','iphone')->first();
                             @endphp
@@ -738,23 +739,32 @@
                         <h5 class="text-center black-c">@lang('site.Follow us on')</h5>
 
                           <ul class="navbar-nav  w-100 p-0 justify-content-center" style="flex-direction: row" >
-                              @if($facebook)
-                                <li class="nav-item  p-1">
-                                    <a class="nav-link  "  href="{{$facebook->link }}" target="_blank"> <img class="icon-img footer-icon" src="{{asset('assets/images/icons/164926746970148.png')}}" alt="">
-                                    </a>
-                                </li>
-                              @endif
-                              @if($instagram)
-                                <li class="nav-item  p-1">
-                                    <a class="nav-link  "  href="{{$instagram->link }}" target="_blank"> <img class="icon-img footer-icon" src="{{asset('assets/images/icons/164920274952956.png')}}" alt="">
-                                    </a>
-                                </li>
-                              @endif
-                              @if($snapchat)
-                                <li class="nav-item  p-1">
-                                    <a class="nav-link  "  href="{{$snapchat->link }}" target="_blank"> <img class="icon-img footer-icon" src="{{asset('assets/images/icons/164920269479238.png')}}" alt="">
-                                    </a>
-                                </li>
+                              @if($icons->count() > 1 )
+                                  @foreach($icons as $icon)
+                                      <li class="nav-item  p-1">
+                                          <a class="nav-link  "  href="{{$icon->link }}" target="_blank"> <img class="icon-img footer-icon" src="{{$icon->full_src}}" alt="">
+                                          </a>
+                                      </li>
+                                  @endforeach
+                              @else
+                                  @if($facebook)
+                                    <li class="nav-item  p-1">
+                                        <a class="nav-link  "  href="{{$facebook->link }}" target="_blank"> <img class="icon-img footer-icon" src="{{asset('assets/images/icons/164926746970148.png')}}" alt="">
+                                        </a>
+                                    </li>
+                                  @endif
+                                  @if($instagram)
+                                    <li class="nav-item  p-1">
+                                        <a class="nav-link  "  href="{{$instagram->link }}" target="_blank"> <img class="icon-img footer-icon" src="{{asset('assets/images/icons/164920274952956.png')}}" alt="">
+                                        </a>
+                                    </li>
+                                  @endif
+                                  @if($snapchat)
+                                    <li class="nav-item  p-1">
+                                        <a class="nav-link  "  href="{{$snapchat->link }}" target="_blank"> <img class="icon-img footer-icon" src="{{asset('assets/images/icons/164920269479238.png')}}" alt="">
+                                        </a>
+                                    </li>
+                                  @endif
                               @endif
 
 

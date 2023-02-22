@@ -29,6 +29,8 @@ class Product extends Model
         'is_clothes' => 'boolean',
         'in_sale' => 'boolean',
         'has_options' => 'boolean',
+        'day_order' => 'integer',
+        'is_order' => 'integer',
     ];
 
 

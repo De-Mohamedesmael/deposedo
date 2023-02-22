@@ -11,10 +11,14 @@ class Icon extends Model
 
     protected $guarded = [];
 
-    protected $appends = ['src'];
+    protected $appends = ['src','full_src'];
 
     public function getSrcAttribute(){
 
         return asset('assets/images/icons');
+    }
+    public function getFullSrcAttribute(){
+
+        return asset('assets/images/icons/'.$this->img);
     }
 }
