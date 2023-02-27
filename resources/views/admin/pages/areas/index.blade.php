@@ -24,6 +24,7 @@
         "name_ar"        => __('form.label.name ar'),
         "name_en"        => __('form.label.name en'),
         "shipping_price" => __('form.label.shipping price'),
+        "wilaya_id"     => __('form.label.wilaya_id'),
         "country_id"     => __('form.label.country'),
     ]) !!}
 
@@ -41,7 +42,7 @@
         let country_id = '@json($countries)';
 
         myDataTableColumns({
-            name:  ['id', 'name_ar', 'name_en',   'shipping_price', 'country_id'],
+            name:  ['id', 'name_ar', 'name_en',   'shipping_price', 'wilaya_id','country_id'],
             input:{'shipping_price':'number'},
             select: {country_id},
             alias: {country_id},

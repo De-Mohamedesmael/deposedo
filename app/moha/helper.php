@@ -174,4 +174,90 @@ function notifyByFirebase($title, $body, $tokens, $data = [],$is_notification=tr
 
 
 
+
+
+    function getCiteis(){
+        $url =env('API_YALIDINE_URL')."/wilayas/"; // the wilayas endpoint
+        $api_id = env('API_YALIDINE_ID'); // your api ID
+        $api_token = env('API_YALIDINE_TOKEN'); // your api token
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => $url,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'GET',
+            CURLOPT_HTTPHEADER => array(
+                'X-API-ID: '. $api_id,
+                'X-API-TOKEN: '. $api_token
+            ),
+        ));
+
+        $response_json = curl_exec($curl);
+        curl_close($curl);
+
+        $response_array = json_decode($response_json,true);
+        return $response_json;
+    }
+    function getCityPrice($id){
+        $url = env('API_YALIDINE_URL')."/wilayas/".$id; // the wilayas endpoint
+        $api_id = env('API_YALIDINE_ID'); // your api ID
+        $api_token = env('API_YALIDINE_TOKEN'); // your api token
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => $url,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'GET',
+            CURLOPT_HTTPHEADER => array(
+                'X-API-ID: '. $api_id,
+                'X-API-TOKEN: '. $api_token
+            ),
+        ));
+
+        $response_json = curl_exec($curl);
+        curl_close($curl);
+
+        $response_array = json_decode($response_json,true);
+        return $response_json;
+    }
+    function getCityPricearray($ids){
+        $url = "https://api.yalidine.app/v1/wilayas/"; // the wilayas endpoint
+        $api_id = env('API_YALIDINE_ID'); // your api ID
+        $api_token = env('API_YALIDINE_TOKEN'); // your api token
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => $url,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'GET',
+            CURLOPT_HTTPHEADER => array(
+                'X-API-ID: '. $api_id,
+                'X-API-TOKEN: '. $api_token
+            ),
+        ));
+
+        $response_json = curl_exec($curl);
+        curl_close($curl);
+
+        $response_array = json_decode($response_json,true);
+        return $response_json;
+    }
 ?>

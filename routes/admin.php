@@ -195,6 +195,7 @@ Route::middleware('admin.auth')->prefix('admin')->group(function () {
     Route::delete('trash/countries/{id}', [CountryController::class, 'finalDelete'])->name('countries.finalDelete');
 
     Route::resource('areas', AreaController::class);
+    Route::get('trash/index_yalidine', [AreaController::class, 'indexYalidine'])->name('areas.indexYalidine');
     Route::get('trash/areas/{id?}', [AreaController::class, 'index'])->name('areas.trash');
     Route::post('trash/areas/{id}', [AreaController::class, 'restore'])->name('areas.restore');
     Route::delete('trash/areas/{id}', [AreaController::class, 'finalDelete'])->name('areas.finalDelete');

@@ -50,7 +50,12 @@ class AreaController extends Controller
         ); // end query
     }
 
+    public function indexYalidine()
+    {
 
+       $areas = getCiteis()['data'];
+        return view('admin/pages/areas/index_yalidine')->with($areas);
+    }
     public function create()
     {
 
