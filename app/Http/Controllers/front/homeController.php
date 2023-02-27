@@ -136,18 +136,6 @@ class homeController extends Controller
       {
 
 
-
-          //   $app="المحن";
-        //   $m="سموعليكواااا";
-        // self::send_notf('c9FHNN5rQlyaM07Didfkl_:APA91bH_OC2-rosOjc94CN2FpkvWuUO4hnPTV_gV2ARBBCMTSeulb70t9Q27iUIcQtMGMB0cEYFHg99Yh69YcYAxxGf4KQxBX3mVst-I3adSQGtzSw3E-M5Q_G7Wwfc-q47fQwY6FrLE',$m,$app);
-
-        // $offerEndingSoon = Product::customSelect(['end_sale'])
-        //     ->orderBy('end_sale' , 'asc')
-        //     ->inStock()
-        //     ->where('end_sale' , ">=" , Carbon::now()->format('Y-m-d'))
-        //     ->where('in_sale' , 1)->where('is_brand',0)
-        //     ->take(self::COUNT_ROWS)
-        //     ->get();
             $vendors = Category::with('subCategories')
                 ->where('parent_id' , 0)
                 ->inRandomOrder()->take(10)
