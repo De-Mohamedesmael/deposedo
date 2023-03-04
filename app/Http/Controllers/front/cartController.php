@@ -75,21 +75,21 @@ class cartController extends Controller
                 'msg' => __('site.Can not find City  !!')
             ]);
         }
-
-        $val = $govern->shipping_price;
-        $val_desk = $govern->shipping_price_desk;
-        $total=get_price_helper($request->total + $govern->shipping_price);
-        $delivery = get_price_helper($govern->shipping_price);
-        $delivery_desk = $govern->shipping_price_desk >0 ?  get_price_helper($govern->shipping_price_desk):0;
-            $centers=null;
-            if($govern->wilaya_id){
-               $centers= getCenters($govern->wilaya_id);
-            }
+          $price=sumALLPriceDelivry($request->product_ids,$govern);
+        $val = $price['shipping_price'];
+        $val_desk = $price['shipping_price_desk'];
+        $total=get_price_helper($request->total + $price['shipping_price']);
+        $delivery = get_price_helper($price['shipping_price']);
+        $delivery_desk = $price['shipping_price_desk'] >0 ?  get_price_helper($price['shipping_price_desk']):0;
+//            $centers=null;
+//            if($govern->wilaya_id){
+//               $centers= getCenters($govern->wilaya_id);
+//            }
         return response()->json([
             'success' => true,
             'val_p' => $val,
             'val_desk' => $val_desk,
-            'centers' => $centers,
+//            'centers' => $centers,
             'total1' => $total,
             'delivery' => $delivery,
             'delivery_desk' => $delivery_desk,
@@ -433,6 +433,7 @@ class cartController extends Controller
                  'country' => 'required',
                  'city' => 'required',
                 'address' => 'required',
+                'type_delivery' => 'required',
 
             ];
             $messages= [
@@ -447,9 +448,6 @@ class cartController extends Controller
             if ($valid->fails()) {
                     return back()->with('error',$valid->errors()->first());
             }
-            // dd($request->all());
-
-
             if (!$request->shipping_address_id) {
                 $shipping_address = $this->saveShippingAddressId($request);
                 $shipping_address_id = $shipping_address->id;
@@ -457,14 +455,14 @@ class cartController extends Controller
             $discount = $this->coupon($request->coupon_code ,  $request->price);
 
             $govern=Area::where('id',$request->city )->first();
-            $val = $govern->shipping_price;
-            $total=($request->price + $govern->shipping_price )-$discount;
+            $all_val = sumALLPriceDelivry($request->product_ids,$govern);
+            $val= $request->type_delivery == 'delivery'?$all_val['shipping_price']:$all_val['shipping_price_desk'];
+            $total=($request->price + $val )-$discount;
             $payment_method='cash';
-            if($request->type=='knet'){
-              $payment_method='knet';
-            }
+
             // dd(Order::first());
             $save = Order::create([
+                  "status" =>"accept",
                   "note" =>$request->note,
                   "products_count" => 0,
                   "order_price" => $request->price,
@@ -507,37 +505,27 @@ class cartController extends Controller
                                 }
                           }
 
-                          $price=OrderItem::where('order_id',$save->id)->sum('end_price');
-                          $discount = $this->coupon($request->coupon_code ,  $price);
-                          $save->total_price=($price + $govern->shipping_price )-$discount;
-                          $save->order_price=$price;
-                        //   dd($student_id);
-                          $save->brand_id= null;
-                          $save->save();
-                          if($request->type=="knet"){
+                  $price=OrderItem::where('order_id',$save->id)->sum('end_price');
+                  $save->order_price=$price;
+                  $save->brand_id= null;
 
-                              session()->forget('cart');
-                              return redirect()->route('v2_payment',$save->id); //order id
-                          }else{
-                                $save->status="accept";
-                                if($save->shipping_address->email !=null){
-                                    //   invoice
-                                    $data['invoice']=$save;
-                                    $data["email"]=$save->shipping_address->email;
-                                        $from=env('MAIL_FROM_ADDRESS');
-                                    $data["subject"]= 'order';
-
-//                                        Mail::send('emails.orderStore', $data, function ($message) use ($data, $from) {
-//                                            $message->from($from)->to($data["email"], $data["email"] )
-//                                            ->subject($data["subject"]);
-//                                         });
-                                  }
-                                 $save->save();
-                                session()->forget('cart');
+                if($save->shipping_address->email !=null){
+                    //   invoice
+                    $data['invoice']=$save;
+                    $data["email"]=$save->shipping_address->email;
+                        $from=env('MAIL_FROM_ADDRESS');
+                    $data["subject"]= 'order';
+                    Mail::send('emails.orderStore', $data, function ($message) use ($data, $from) {
+                        $message->from($from)->to($data["email"], $data["email"] )
+                        ->subject($data["subject"]);
+                     });
+                  }
+                 $save->save();
+                        session()->forget('cart');
 
 
-                                return view('front.cart.success')->with(['order'=>$save]);
-                          }
+                        return view('front.cart.success')->with(['order'=>$save]);
+
                       }
 
 

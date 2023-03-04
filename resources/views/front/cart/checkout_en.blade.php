@@ -28,6 +28,8 @@
           text-align: center;
           border-radius: 10px;
           border: 1px solid #0000001a;
+          max-height: 60px !important;
+          padding: 5px;
       }
     </style>
     @if(app()->getLocale()=='en')
@@ -126,13 +128,13 @@
                         <input type="hidden"  id="get_currency_code_helper" value="{{get_currency_code_helper()}}" >
                     </div>
                 </div>
-                <div class="col-md-4 center_div hide">
-                    <div class="form-group">
-                        <label for="center_id">{{__('site.center_id')}}</label>
-                        <select name="center_id"  class="form-control" style="height: 55px;" id="center_id" required>
-                        </select>
-                    </div>
-                </div>
+{{--                <div class="col-md-4 center_div hide">--}}
+{{--                    <div class="form-group">--}}
+{{--                        <label for="center_id">{{__('site.center_id')}}</label>--}}
+{{--                        <select name="center_id"  class="form-control" style="height: 55px;" id="center_id" required>--}}
+{{--                        </select>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
             </div>
               <br>
 
@@ -376,7 +378,7 @@
                       $('.center_div').addClass('hide');
                   }else{
                       val_delivery= $('#input_type_delivery_price_dask').val();
-                      $('.center_div').removeClass('hide');
+                      // $('.center_div').removeClass('hide');
                       $('#test3').html(val_delivery+' '+currency);
                       g_total =parseInt(total)+parseInt(val_delivery);
                       $('#total_show').html(g_total+' '+currency);
