@@ -86,7 +86,7 @@ class cartController extends Controller
                $centers= getCenters($govern->wilaya_id)['data'];
                $html='';
                foreach($centers as $center){
-                   $html.='<option value="'.$center['center_id'].'" address="'.$center['address'].'">'.$center['name'].'</option>';
+                   $html.='<option value="'.$center['center_id'].'" address="'.$center['address'].'" title_a="'.__("site.address_center").'">'.$center['name'].'</option>';
                }
             }
         return response()->json([
