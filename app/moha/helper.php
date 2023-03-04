@@ -1,4 +1,7 @@
 <?php
+
+use App\Models\Product;
+
 function APIEncrypt ($key, $value){
     $padSize = 16 - (strlen ($value) % 16) ;
     $value = $value . str_repeat (chr ($padSize), $padSize) ;
@@ -368,5 +371,23 @@ function getCenters($city_id){
     $response_array = json_decode($response_json,true);
     return $response_array;
 }
+function sumALLPriceDelivry($product_ids , $govern){
+    $response_array=[];
+    $Products=Product::with('students:id,area_id')->wherein('id',$product_ids)->select('id')->get();
+    $arr_cities_ids=[];
+    foreach ($Products as $Product){
+       $student= $Product->students->first();
+       if($student){
 
+           $arr_cities_ids[$student->area_id]=1;
+       }else{
+           $arr_cities_ids[0]=1;
+       }
+    }
+    $count_cites=env('BY_COUNT_CITY',false)?count($arr_cities_ids):1;
+    $response_array['cities_ids']= $arr_cities_ids;
+    $response_array['shipping_price']= $govern->shipping_price * $count_cites;
+    $response_array['shipping_price_desk']= $govern->shipping_price_desk * $count_cites;
+    return $response_array;
+}
 ?>
