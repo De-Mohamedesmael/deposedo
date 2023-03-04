@@ -167,4 +167,6 @@ return [
     'title'=>'Subject',
     'message'=>'your Message',
     'send'=>'Send',
+    'center_id'=>'shipping centers (shipping offices)',
+    'address_center'=>'shipping office address',
 ];

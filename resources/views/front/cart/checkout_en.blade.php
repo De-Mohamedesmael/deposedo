@@ -128,13 +128,16 @@
                         <input type="hidden"  id="get_currency_code_helper" value="{{get_currency_code_helper()}}" >
                     </div>
                 </div>
-                <div class="col-md-4 center_div hide">
+                <div class="col-md-6 center_div hide">
                     <div class="form-group">
                         <label for="center_id">{{__('site.center_id')}}</label>
-                        <select name="center_id"  class="form-control" style="height: 55px;" id="center_id" required>
+                        <select name="center_id"  class="form-control" style="height: 55px;" id="center_id" onchange="functionCenter()" required>
 
                         </select>
                     </div>
+                </div>
+                <div class="col-md-6 center_div hide">
+                    <h4 class="alert alert-success"> </h4>
                 </div>
             </div>
               <br>
@@ -391,7 +394,11 @@
               });
           })
 
+          function functionCenter(){
+              var address =  $('#center_id').attr('address') ;
 
+              $('#address_center').html({{__('site.address_center')}}+' : '+address);
+          }
 
       </script>
 

@@ -86,7 +86,7 @@ class cartController extends Controller
                $centers= getCenters($govern->wilaya_id)['data'];
                $html='';
                foreach($centers as $center){
-                   $html.='<option value="'.$center['id'].'">'.$center['name'].'</option>';
+                   $html.='<option value="'.$center['center_id'].'" address="'.$center['address'].'">'.$center['name'].'</option>';
                }
             }
         return response()->json([
@@ -470,6 +470,7 @@ class cartController extends Controller
                   "note" =>$request->note,
                   "products_count" => 0,
                   "order_price" => $request->price,
+                  "type_delivery" => $request->type_delivery,
                   "shipping_price" => $val,
                   "total_price" => $total,
                   "user_id"=>$request->user_id,
