@@ -86,7 +86,7 @@ class cartController extends Controller
                $centers= getCenters($govern->wilaya_id)['data'];
                $html='';
                foreach($centers as $center){
-                   $html.='<option value="'.$center->id.'">'.$center->name.'</option>';
+                   $html.='<option value="'.$center['id'].'">'.$center['name'].'</option>';
                }
             }
         return response()->json([
@@ -512,7 +512,9 @@ class cartController extends Controller
                   $price=OrderItem::where('order_id',$save->id)->sum('end_price');
                   $save->order_price=$price;
                   $save->brand_id= null;
-
+                 if($request->type_delivery != 'delivery'){
+                     $save->center_id=$request->center_id;
+                  }
                 if($save->shipping_address->email !=null){
                     //   invoice
                     $data['invoice']=$save;
