@@ -8,6 +8,11 @@ return [
     'Reset Password'=>'إعادة تعيين كلمة المرور',
     'order_new_mail'=>'تم إكمال طلبك بنجاح ، طلبك قيد المراجعة الآن',
     ///notification
+    ///
+    ///
+
+    'dask_shipping'=>'استلام من مكتب الشحن',
+    'delivery'=>'التوصيل للمنزل',
     'notifi_free_shopping_title'=>'تم تفعيل الشحن المجاني',
     'notifi_free_shopping_body'=>'تسوق الان وتمتع بشحن مجاني ',
     'notifi_copoun_des_title'=>'تمتع الان بالخصم',

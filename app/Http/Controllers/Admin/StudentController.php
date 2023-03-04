@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Student\StudentRequest;
 use App\Mail\AcceptStudentMail;
+use App\Models\PackageStudent;
 use App\Models\Product;
 use App\Models\ProductOrder;
 use App\Models\Role;
@@ -143,8 +144,12 @@ class StudentController extends Controller
     public function accept($id){
 
         $student = Student::findOrFail($id);
-
-        $student->is_active = 1;
+        $pa=PackageStudent::Active()->where('student_id',$id)->first();
+        if($pa){
+            $student->is_active = 1;
+        }else{
+            $student->is_active = 2;
+        }
 
         $student->save();
 
@@ -189,9 +194,10 @@ class StudentController extends Controller
             'university'      => $request->university,
             'university_id'   => $request->university_id,
             'major'           => $request->major,
+            'is_active'           => 2,
             'img'       => $imgName ?? $oldImage,
 
-            'limit_products'  => $request->limit_products ?? 50,
+            'limit_products'  => $request->limit_products ?? 0,
             $password    => bcrypt($request->password),
         ];
     }

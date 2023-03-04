@@ -76,16 +76,23 @@ class cartController extends Controller
             ]);
         }
 
-        $val = get_price_helper($govern->shipping_price);
+        $val = $govern->shipping_price;
+        $val_desk = $govern->shipping_price_desk;
         $total=get_price_helper($request->total + $govern->shipping_price);
-        $delivery = '';
-        $delivery .= '<p style="color: red ;font-size: 18px" >'.__('site.The delivery cost for') .' ' .$govern->name .' : '.get_price_helper($govern->shipping_price)."</p>";
-
+        $delivery = get_price_helper($govern->shipping_price);
+        $delivery_desk = $govern->shipping_price_desk >0 ?  get_price_helper($govern->shipping_price_desk):0;
+            $centers=null;
+            if($govern->wilaya_id){
+               $centers= getCenters($govern->wilaya_id);
+            }
         return response()->json([
             'success' => true,
-            'delivery1' => $val,
+            'val_p' => $val,
+            'val_desk' => $val_desk,
+            'centers' => $centers,
             'total1' => $total,
             'delivery' => $delivery,
+            'delivery_desk' => $delivery_desk,
             'order_day'=>$max_days,
         ]);
 

@@ -25,6 +25,11 @@
             <input name="shipping_price" type="text" class="form-control @error('shipping_price') is-invalid @enderror" id="shipping_price" placeholder="@lang('form.placeholder.shipping_price')" value="{{old('shipping_price')}}">
             @error('shipping_price')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
         </div>
+        <div class="form-group col-md-6">
+            <label for="shipping_price">@lang('form.label.shipping_price_desk')</label>
+            <input name="shipping_price_desk" type="text" class="form-control @error('shipping_price_desk') is-invalid @enderror" id="shipping_price_desk" placeholder="@lang('form.label.shipping_price_desk')" value="{{old('shipping_price_desk')}}">
+            @error('shipping_price_desk')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
+        </div>
 
 {{--        <div class="form-group col-md-6">--}}
 {{--            <label for="cache">الدفع عند الاستلام</label>--}}

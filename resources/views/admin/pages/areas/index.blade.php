@@ -12,7 +12,7 @@
 @endsection
 
 @section('content')
-
+    @include('admin.includes.alert_success')
     @include('admin.includes.modalBtnAction')
 
     {!! myDataTable_button([
@@ -24,6 +24,7 @@
         "name_ar"        => __('form.label.name ar'),
         "name_en"        => __('form.label.name en'),
         "shipping_price" => __('form.label.shipping price'),
+        "shipping_price_desk"     => __('form.label.shipping_price_desk'),
         "wilaya_id"     => __('form.label.wilaya_id'),
         "country_id"     => __('form.label.country'),
     ]) !!}
@@ -42,7 +43,7 @@
         let country_id = '@json($countries)';
 
         myDataTableColumns({
-            name:  ['id', 'name_ar', 'name_en',   'shipping_price', 'wilaya_id','country_id'],
+            name:  ['id', 'name_ar', 'name_en',   'shipping_price','shipping_price_desk', 'wilaya_id','country_id'],
             input:{'shipping_price':'number'},
             select: {country_id},
             alias: {country_id},

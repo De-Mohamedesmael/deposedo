@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'update_yalidine' => 'Update shipping Price - yalidine',
     'carts'=>'Cart',
     'show carts'=>'Show carts',
     'show active ads'=>'Effective ads',
