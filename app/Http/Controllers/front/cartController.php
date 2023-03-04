@@ -81,15 +81,19 @@ class cartController extends Controller
         $total=get_price_helper($request->total + $price['shipping_price']);
         $delivery = get_price_helper($price['shipping_price']);
         $delivery_desk = $price['shipping_price_desk'] >0 ?  get_price_helper($price['shipping_price_desk']):0;
-//            $centers=null;
-//            if($govern->wilaya_id){
-//               $centers= getCenters($govern->wilaya_id);
-//            }
+            $centers=null;
+            if($govern->wilaya_id){
+               $centers= getCenters($govern->wilaya_id)['data'];
+               $html='';
+               foreach($centers as $center){
+                   $html.='<option value="'.$center->id.'">'.$center->name.'</option>';
+               }
+            }
         return response()->json([
             'success' => true,
             'val_p' => $val,
             'val_desk' => $val_desk,
-//            'centers' => $centers,
+            'centers' => $html,
             'total1' => $total,
             'delivery' => $delivery,
             'delivery_desk' => $delivery_desk,

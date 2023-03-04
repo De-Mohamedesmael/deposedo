@@ -345,7 +345,7 @@ function getCityPricearray($ids){
 }
 
 function getCenters($city_id){
-    $url = "https://api.yalidine.app/v1/centers/$city_id"; // the wilayas endpoint
+    $url = "https://api.yalidine.app/v1/centers/?wilaya_id=$city_id"; // the wilayas endpoint
     $api_id = env('API_YALIDINE_ID'); // your api ID
     $api_token = env('API_YALIDINE_TOKEN'); // your api token
 

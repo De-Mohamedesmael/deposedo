@@ -128,13 +128,14 @@
                         <input type="hidden"  id="get_currency_code_helper" value="{{get_currency_code_helper()}}" >
                     </div>
                 </div>
-{{--                <div class="col-md-4 center_div hide">--}}
-{{--                    <div class="form-group">--}}
-{{--                        <label for="center_id">{{__('site.center_id')}}</label>--}}
-{{--                        <select name="center_id"  class="form-control" style="height: 55px;" id="center_id" required>--}}
-{{--                        </select>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
+                <div class="col-md-4 center_div hide">
+                    <div class="form-group">
+                        <label for="center_id">{{__('site.center_id')}}</label>
+                        <select name="center_id"  class="form-control" style="height: 55px;" id="center_id" required>
+
+                        </select>
+                    </div>
+                </div>
             </div>
               <br>
 
@@ -343,10 +344,11 @@
                               $('.type_delivery_div').removeClass('hide');
                               $('#type_delivery_price_delivery').html(result.delivery);
                               $('#input_type_delivery_price').val(result.val_p);
-                              if(result.delivery_desk != 0 ){
+                              if(result.delivery_desk != 0  && result.centers != ''){
                                   $('#type_delivery_price_dask').html(result.delivery_desk);
                                   $('#input_type_delivery_price_dask').val(result.val_desk);
                                   $('.type_dask_div').removeClass('hide');
+                                  $('#center_id').html(result.centers);
                               }else{
                                   $('.type_dask_div').addClass('hide');
                               }
@@ -378,7 +380,8 @@
                       $('.center_div').addClass('hide');
                   }else{
                       val_delivery= $('#input_type_delivery_price_dask').val();
-                      // $('.center_div').removeClass('hide');
+                      $('.center_div').removeClass('hide');
+
                       $('#test3').html(val_delivery+' '+currency);
                       g_total =parseInt(total)+parseInt(val_delivery);
                       $('#total_show').html(g_total+' '+currency);
