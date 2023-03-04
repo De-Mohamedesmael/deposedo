@@ -540,7 +540,7 @@
                         <a href="{{route('admin.areas.index')}}">@lang('layout.show areas')</a>
                     </li>
                     <li id="li-areas">
-                        <a href="{{route('admin.areas.indexYalidine')}}">@lang('layout.show areas') - yalidine</a>
+                        <a href="{{route('admin.areas.indexYalidine')}}">@lang('layout.update_yalidine') </a>
                     </li>
                     <li id="li-create">
                         <a href="{{route('admin.areas.create')}}">@lang('layout.add area')</a>

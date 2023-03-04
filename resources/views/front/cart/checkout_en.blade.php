@@ -19,12 +19,22 @@
         span#order_day {
             color: #b98737;
         }
+      label.type_delivery {
+          color: #b80000;
+          font-size: 15px;
+          font-weight: 700;
+      }
+      .div_type_g {
+          text-align: center;
+          border-radius: 10px;
+          border: 1px solid #0000001a;
+      }
     </style>
-    @if(LaravelLocalization::getCurrentLocaleDirection() == 'rtl')
+    @if(app()->getLocale()=='en')
     <style>
         .styl-item-r {
-              float: left;
-          }
+            float: left;
+        }
 
     </style>
 
@@ -100,7 +110,31 @@
                   <div id="test1"></div>
                 </div>
               </div>
-            </div><br>
+
+                <div class="col-md-8 type_delivery_div hide row">
+                    <div class="type_d_div div_type_g col-md-6">
+                         <input class="type_delivery" type="radio" id="delivery" name="type_delivery" value="delivery" checked>
+                         <label  class="type_delivery" for="delivery">{{__('site.delivery')}} <br> {{__('site.price')}}
+                             <span class="type_delivery_price" id="type_delivery_price_delivery">()</span></label>
+                        <input type="hidden"  id="input_type_delivery_price" >
+                    </div>
+                    <div class="type_dask_div div_type_g col-md-6">
+                        <input class="type_delivery" type="radio" id="dask_shipping" name="type_delivery" value="dask">
+                        <label  class="type_delivery" for="dask_shipping">{{__('site.dask_shipping')}}<br> {{__('site.price')}}
+                            <span class="type_delivery_price" id="type_delivery_price_dask">()</span></label><br>
+                        <input type="hidden"  id="input_type_delivery_price_dask" >
+                        <input type="hidden"  id="get_currency_code_helper" value="{{get_currency_code_helper()}}" >
+                    </div>
+                </div>
+                <div class="col-md-4 center_div hide">
+                    <div class="form-group">
+                        <label for="center_id">{{__('site.center_id')}}</label>
+                        <select name="center_id"  class="form-control" style="height: 55px;" id="center_id" required>
+                        </select>
+                    </div>
+                </div>
+            </div>
+              <br>
 
             <div class="form-group">
               <input type="text" class="form-control " name="address"  placeholder="{{__('site.address')}}" required>
@@ -177,12 +211,6 @@
 
             </label>
           </div><br>
-{{--          <div class="form-check">--}}
-{{--            <input class="form-check-input mt-3" type="radio" name="type" id="exampleRadios2" value="knet">--}}
-{{--            <label class="form-check-label" for="exampleRadios2">--}}
-{{--              <img src="{{asset('front/img/cash.png')}}" class="w-100">--}}
-{{--            </label>--}}
-{{--          </div>--}}
               <hr><br>
           <p>{{__('site.Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our')}} <a href="{{route('front.info','PrivacyPolicy')}}" target="_blank" class="main-color">{{__('site.PrivacyPolicy2')}}</a>
 
@@ -310,12 +338,20 @@
                               })
                           } else {
 
-                            //   alert(result.order_day);
-      //                            $('#Orders_city_id').html(result.cities)
-                              $('#test1').html(result.delivery)
-                              $('#test3').html(result.delivery1)
-                              $('#total_show').html(result.total1)
-                              $('#order_day').html(result.order_day)
+                              $('.type_delivery_div').removeClass('hide');
+                              $('#type_delivery_price_delivery').html(result.delivery);
+                              $('#input_type_delivery_price').val(result.val_p);
+                              if(result.delivery_desk != 0 ){
+                                  $('#type_delivery_price_dask').html(result.delivery_desk);
+                                  $('#input_type_delivery_price_dask').val(result.val_desk);
+                                  $('.type_dask_div').removeClass('hide');
+                              }else{
+                                  $('.type_dask_div').addClass('hide');
+                              }
+                              $('#test3').html(result.delivery);
+                              $('#total_show').html(result.total1);
+                              $('#order_day').html(result.order_day);
+                              $('#delivery').prop("checked", true);
                           }
 
                       },
@@ -328,11 +364,30 @@
                   });
 
               }
+              $('input[type=radio][name=type_delivery]').change(function() {
+                  var total =  $('#total').val() ? $('#total').val():0;
 
+                  currency= $('#get_currency_code_helper').val();
+                  if (this.value == 'delivery') {
+                      val_delivery= $('#input_type_delivery_price').val();
+                      $('#test3').html(val_delivery+' '+currency);
+                      g_total =parseInt(total)+parseInt(val_delivery);
+                      $('#total_show').html(g_total+' '+currency);
+                      $('.center_div').addClass('hide');
+                  }else{
+                      val_delivery= $('#input_type_delivery_price_dask').val();
+                      $('.center_div').removeClass('hide');
+                      $('#test3').html(val_delivery+' '+currency);
+                      g_total =parseInt(total)+parseInt(val_delivery);
+                      $('#total_show').html(g_total+' '+currency);
 
+                  }
+                  console.log(this.value,g_total, currency)
+              });
           })
 
 
 
       </script>
+
     @stop

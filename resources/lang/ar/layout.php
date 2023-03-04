@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'update_yalidine'=>'تحديث اسعار الشحن - yalidine',
     'carts'=>'السلة',
     'show carts'=>'اظهار سلة المستخدمين',
     'shops'=>'المتاجر',

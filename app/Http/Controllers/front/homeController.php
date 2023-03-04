@@ -141,7 +141,7 @@ class homeController extends Controller
                 ->inRandomOrder()->take(10)
                 ->get();
         $newProducts = Product::customSelect()
-            ->inRandomOrder()->where('is_brand',0)
+            ->inRandomOrder()
             ->take(self::COUNT_ROWS)
             ->get();
             $brands = Student::latest()->where('is_active',1)->simplePaginate(self::COUNT_ROWS);
@@ -149,14 +149,14 @@ class homeController extends Controller
 
         $recommendedProducts = Product::customSelect(['is_recommended'])
             ->where('is_recommended' , 1)
-            ->inStock()->where('is_brand',0)
+            ->inStock()
             ->inRandomOrder()
             ->take(self::COUNT_ROWS)
             ->get();
 
         $bestDiscount = Product::customSelect()
             ->where('in_sale' , 1)
-            ->inStock()->inSale()->where('is_brand',0)
+            ->inStock()->inSale()
                 ->inRandomOrder()
                 ->take(self::COUNT_ROWS)
             ->get();
@@ -210,39 +210,39 @@ class homeController extends Controller
           case 'topRating':
               $data = Product::customSelect(['ratings'])
               ->orderBy('ratings' , 'desc')
-              ->inStock()->where('is_brand',0);
+              ->inStock();
             break;
 
           case 'bestProducts':
               $data = Product::customSelect(['is_best'])
                   ->where('is_best' , 1)
-                  ->inStock()->where('is_brand',0)
+                  ->inStock()
                   ->inRandomOrder();
               break;
           case 'recommendedProducts':
           $data = Product::customSelect(['is_recommended'])
               ->where('is_recommended' , 1)
-              ->inStock()->where('is_brand',0)
+              ->inStock()
               ->inRandomOrder();
             break;
           case 'offers':
           $data = Product::customSelect()
               ->where('in_sale' , 1)
-              ->inStock()->inSale()->where('is_brand',0);
+              ->inStock()->inSale();
             break;
           case 'bestPrice':
           $data = Product::customSelect()
               ->orderBy('regular_price' , 'asc')
-              ->inStock()->where('is_brand',0);
+              ->inStock();
             break;
           case 'topLikes':
           $data = Product::customSelect(['likes_count'])
               ->orderBy('likes_count' , 'desc')
-              ->inStock()->where('is_brand',0);
+              ->inStock();
             break;
           default:
           $data = Product::customSelect()
-              ->latest('id')->where('is_brand',0);
+              ->latest('id');
             break;
         }
         switch ($sortby) {
@@ -292,9 +292,7 @@ class homeController extends Controller
         $sortby =$sortby??'random';
       $records = Category::findOrFail($id);
        $ParentCategory=null;
-      // dd(  $records);
-    //  $offers = Item::where("over",1)->where("activity",1)->where("category_id",$id)->paginate(15);
-      //$populars = Item::where("category_id",$id)->where("activity",1)->paginate(15);
+
       if($records->parent_id == 0){
       $subCategories_header = Category::where('parent_id',$id)->get();
 
@@ -306,15 +304,12 @@ class homeController extends Controller
         $populars = Product::whereHas('categories' , function ($q) use ($allCategories){
             $q->whereIn('categories.id' , $allCategories);
           })->withCount('likes');
-        // $offers =  Product::whereHas('categories' , function ($q) use ($allCategories){
-        //     $q->whereIn('categories.id' , $allCategories);
-        // })->where("in_sale",1)->inSale()->paginate(15);
+
 
       }else{
         $subCategories_header = Category::where('parent_id',$records->parent_id)->get();
         $ParentCategory=Category::select('id','name_'.app()->getlocale())->where('id',$records->parent_id)->first();
 
-        // $offers = $records->products()->where("in_sale",1)->inSale()->paginate(15);
          $populars = $records->products()->withCount('likes');
       }
         switch ($sortby) {
@@ -350,7 +345,7 @@ class homeController extends Controller
     }
     public function brand (Request $request,$id)
     {
-      $records = Student::findOrFail($id);
+      $records = Student::where('is_active',1)->findOrFail($id);
       $ads = Ad::wherein('position',[9,10])->get();
     //  $offers = Item::where("over",1)->where("activity",1)->where("category_id",$id)->paginate(15);
       //$populars = Item::where("category_id",$id)->where("activity",1)->paginate(15);

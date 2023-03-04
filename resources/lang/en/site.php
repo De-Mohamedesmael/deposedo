@@ -8,8 +8,9 @@ return [
     'Confirm Password'=>'Confirm Password',
     'Reset Password'=>'Reset Password',
         //notification
-    'order_new_mail'=>'تم الطلب بنجاح طلبك  الان قيد المراجعة والتنفيذ',
-
+    'dask_shipping'=>'Dask Shipping',
+    'delivery'=>'home delivery',
+    'order_new_mail'=>'The order has been successfully completed, your order is now under review and implementation',
 
     'notifi_free_shopping_title'=>'Free shipping is activated',
     'notifi_free_shopping_body'=>'Shop now and enjoy free shipping',

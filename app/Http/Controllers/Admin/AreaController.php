@@ -52,9 +52,42 @@ class AreaController extends Controller
 
     public function indexYalidine()
     {
+        $url = env('API_YALIDINE_URL')."/wilayas/"; // the wilayas endpoint
+        $api_id = env('API_YALIDINE_ID'); // your api ID
+        $api_token = env('API_YALIDINE_TOKEN'); // your api token
 
-       $areas = getCiteis()['data'];
-        return view('admin/pages/areas/index_yalidine')->with($areas);
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => $url,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'GET',
+            CURLOPT_HTTPHEADER => array(
+                'X-API-ID: '. $api_id,
+                'X-API-TOKEN: '. $api_token
+            ),
+        ));
+
+        $response_json = curl_exec($curl);
+        curl_close($curl);
+
+        $response_array = json_decode($response_json,true);
+        foreach($response_array['data'] as $response_item){
+            $Area=  Area::where('name_en','LIKE','%'.$response_item['name'].'%')->first();
+            if($Area){
+                $Area->wilaya_id=$response_item['id'];
+                $cit=getCityPrice($response_item['id']);
+                $Area->shipping_price=$cit['home_fee'];
+                $Area->shipping_price_desk=$cit['desk_fee'];
+                $Area->save();
+            }
+        }
+        return redirect()->route('admin.areas.index')->with('success','Done');
     }
     public function create()
     {
@@ -76,7 +109,8 @@ class AreaController extends Controller
             'name_en'        => $request->name_en,
             'slug'           => strlen($request->slug) ? $request->slug : \Str::slug($request->name_ar),
             'shipping_price' => $request->shipping_price,
-//          'cache'          => $request->cache,
+            'shipping_price_desk' => $request->shipping_price_desk,
+    //          'cache'          => $request->cache,
             'country_id'     => $request->country_id,
         ]);
 
@@ -96,7 +130,8 @@ class AreaController extends Controller
                 'name_en'        => $request->name_en,
                 'slug'           => $request->slug,
                 'shipping_price' => $request->shipping_price,
-    //            'cache'          => $request->cache,
+                'shipping_price_desk' => $request->shipping_price_desk,
+                //            'cache'          => $request->cache,
                 'country_id'     => $request->country_id,
             ]);
 
